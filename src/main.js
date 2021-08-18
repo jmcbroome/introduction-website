@@ -14,7 +14,7 @@ function getColor(d) {
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.density),
+        fillColor: getColor(feature.properties.intros),
         weight: 2,
         opacity: 1,
         color: 'white',
@@ -28,7 +28,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'b
 // geoJson = L.geoJson(statesData, {style: style}).addTo(map);
 
 var geojson;
-geojson = L.geoJson(statesData, {
+geojson = L.geoJson(introStatesData, {
     style: style,
     onEachFeature: onEachFeature
 }).addTo(map);
@@ -43,9 +43,10 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-        '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
-        : 'Hover over a state');
+    // this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
+    //     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
+    //     : 'Hover over a state');
+    this._div.innerHTML = '<h4>Introductions To ' + (props ? '<b>' + props.name + '</b><br />' + ':' + props.intros : 'Hover over a state');
 };
 
 function highlightFeature(e) {
