@@ -2,6 +2,7 @@
 #it only needs to be ran once per updated tree
 #import pandas as pd
 import ast
+import math
 #cdf = pd.read_csv('hardcoded_clusters.tsv',sep='\t')
 svd = {"type":"FeatureCollection", "features":[]}
 conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
@@ -13,28 +14,58 @@ conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"
 "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
 "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
 conversion.update({v:k for k,v in conversion.items()})
+conversion["indeterminate"] = "indeterminate"
 #ivc = cdf.region.value_counts()
-ivc = {}
+invc = {}
+otvc = {}
+ovc = {}
 with open("hardcoded_clusters.tsv") as inf:
     for entry in inf:
         spent = entry.strip().split("\t")
         if spent[0] == "cluster_id":
             continue
         reg = conversion[spent[9]]
-        if reg not in ivc:
-            ivc[reg] = 0
-        ivc[reg] += 1
-#print(ivc.keys())
+        #reg = spent[9]
+        if reg not in invc:
+            invc[reg] = 0
+        invc[reg] += 1
+        if reg not in ovc:
+            ovc[reg] = {}
+        for tlo in spent[10].split(","):
+            orig = conversion[tlo]
+            if orig not in otvc:
+                otvc[orig] = 0
+            otvc[orig] += 1
+            if orig not in ovc[reg]:
+                ovc[reg][orig] = 0
+            ovc[reg][orig] += 1
+sumin = sum(invc.values())
+
+#print(invc.keys())
+sids = {}
 with open("us-states.js") as inf:
     for entry in inf:
         if entry[0:2] == "//" or entry[0:3] == "var" or entry[0] == "]":
             continue
-        #print(entry.strip())
         data = ast.literal_eval(entry.strip().strip(","))
-        print(data)
-        data["properties"]["intros"] = ivc[data["properties"]["name"]]
+        data["properties"]["intros"] = {}
+        data["properties"]["intros"]["basecount"] = invc[data["properties"]["name"]]
         svd["features"].append(data)
-with open("us-states.js","a") as outf:
+        sids[data["properties"]["name"]] = data["id"]
+#update the data intros list with specific state values
+for ftd in svd["features"]:
+    #update the ftd["properties"]["intros"] with each state
+    #state introductions to itself, for now, I will fill with indeterminate
+    iid = ftd['properties']["name"]
+    for origin, count in ovc[iid].items():
+        #scale the count for display
+        if origin in sids:
+            oid = sids[origin]
+        else:
+            oid = sids[iid]
+        ftd["properties"]["intros"][oid] = math.log10(count * sumin / invc[iid] / otvc[origin])
+
+with open("us-states.js","w") as outf:
     print("//data updated via updated-us-states.py",file=outf)
     print('var introStatesData = {"type":"FeatureCollection","features":[',file=outf)
     for propd in svd['features']:

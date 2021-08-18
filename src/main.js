@@ -1,20 +1,32 @@
 var map = L.map('mapid').setView([37.8, -96], 4);
 
 // Map values from geoJSON to a color 
-function getColor(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
+function getColorBase(d) {
+    return d > 10000 ? '#800026' :
+           d > 5000  ? '#BD0026' :
+           d > 1000  ? '#E31A1C' :
+           d > 500  ? '#FC4E2A' :
+           d > 200   ? '#FD8D3C' :
+           d > 100   ? '#FEB24C' :
+           d > 50   ? '#FED976' :
                       '#FFEDA0';
+}
+
+function getColorIntro(d) {
+    console.log(d)
+    return d > 1 ? '#800026' :
+        d > 0.75  ? '#BD0026' :
+        d > 0.5  ? '#E31A1C' :
+        d > 0.25  ? '#FC4E2A' :
+        d > 0   ? '#FD8D3C' :
+        d > -0.25   ? '#FEB24C' :
+        d > -0.5   ? '#FED976' :
+                    '#FFEDA0';
 }
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.intros),
+        fillColor: getColorBase(feature.properties.intros.basecount),
         weight: 2,
         opacity: 1,
         color: 'white',
@@ -46,7 +58,7 @@ info.update = function (props) {
     // this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
     //     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
     //     : 'Hover over a state');
-    this._div.innerHTML = '<h4>Introductions To ' + (props ? '<b>' + props.name + '</b><br />' + ':' + props.intros : 'Hover over a state');
+    this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
 };
 
 function highlightFeature(e) {
@@ -74,11 +86,24 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
 
+function changeView(e) {
+    //code to change the displayed heatmaps to the matching intro index
+    var clicklayer = e.target;
+    //console.log(clicklayer.feature.id);
+    //layer.setStyle({fillColor: getColor(layer.feature.properties.intros[layer.id])});
+    geojson.eachLayer(function (layer, e = clicklayer) {
+        //console.log(e.id)
+        //console.log(layer.feature.properties.intros[e.id]);
+        layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
+    });
+}
+
 function onEachFeature(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature
+        //mouseover: highlightFeature,
+        //mouseout: resetHighlight,
+        //click: zoomToFeature
+        click: changeView
     });
 }
 
@@ -95,7 +120,7 @@ legend.onAdd = function (map) {
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            '<i style="background:' + getColorBase(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
 
