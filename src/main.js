@@ -13,7 +13,6 @@ function getColorBase(d) {
 }
 
 function getColorIntro(d) {
-    console.log(d)
     return d > 1 ? '#800026' :
         d > 0.75  ? '#BD0026' :
         d > 0.5  ? '#E31A1C' :
@@ -89,11 +88,7 @@ function zoomToFeature(e) {
 function changeView(e) {
     //code to change the displayed heatmaps to the matching intro index
     var clicklayer = e.target;
-    //console.log(clicklayer.feature.id);
-    //layer.setStyle({fillColor: getColor(layer.feature.properties.intros[layer.id])});
     geojson.eachLayer(function (layer, e = clicklayer) {
-        //console.log(e.id)
-        //console.log(layer.feature.properties.intros[e.id]);
         layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
     });
 }
