@@ -25,13 +25,18 @@ with open("hardcoded_clusters.tsv") as inf:
         if spent[0] == "cluster_id":
             continue
         reg = conversion[spent[9]]
+        if spent[10] == "indeterminate":
+            continue
         #reg = spent[9]
         if reg not in invc:
             invc[reg] = 0
         invc[reg] += 1
         if reg not in ovc:
             ovc[reg] = {}
-        for tlo in spent[10].split(","):
+        confidence = [float(c) for c in spent[11].split(",")]
+        for i,tlo in enumerate(spent[10].split(",")):
+            if confidence[i] < 0.1:
+                continue
             orig = conversion[tlo]
             if orig not in otvc:
                 otvc[orig] = 0
@@ -63,8 +68,10 @@ for ftd in svd["features"]:
             oid = sids[origin]
         else:
             oid = sids[iid]
-        ftd["properties"]["intros"][oid] = math.log10(count * sumin / invc[iid] / otvc[origin])
-
+        if count > 5:
+            ftd["properties"]["intros"][oid] = math.log10(count * sumin / invc[iid] / otvc[origin])
+        else:
+            ftd["properties"]["intros"][oid] = -0.5
 with open("us-states.js","w") as outf:
     print("//data updated via updated-us-states.py",file=outf)
     print('var introStatesData = {"type":"FeatureCollection","features":[',file=outf)
