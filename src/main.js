@@ -88,8 +88,11 @@ function zoomToFeature(e) {
 function changeView(e) {
     //code to change the displayed heatmaps to the matching intro index
     var clicklayer = e.target;
+    clicklayer.setStyle({fillColor: "#1a0080"});
     geojson.eachLayer(function (layer, e = clicklayer) {
-        layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
+        if (e.feature.id != layer.feature.id) {
+            layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
+        }
     });
 }
 
@@ -104,22 +107,22 @@ function onEachFeature(feature, layer) {
 
 info.addTo(map);
 
-var legend = L.control({position: 'bottomright'});
+// var legend = L.control({position: 'bottomright'});
 
-legend.onAdd = function (map) {
+// legend.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-        labels = [];
+//     var div = L.DomUtil.create('div', 'info legend'),
+//         grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+//         labels = [];
 
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColorBase(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    }
+//     // loop through our density intervals and generate a label with a colored square for each interval
+//     for (var i = 0; i < grades.length; i++) {
+//         div.innerHTML +=
+//             '<i style="background:' + getColorBase(grades[i] + 1) + '"></i> ' +
+//             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+//     }
 
-    return div;
-};
+//     return div;
+// };
 
-legend.addTo(map);
+// legend.addTo(map);
