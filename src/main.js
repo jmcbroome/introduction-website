@@ -81,6 +81,12 @@ function resetHighlight(e) {
     info.update();
 }
 
+function resetView(e) {
+    geojson.eachLayer(function (layer) {
+        geojson.resetStyle(layer);
+    });
+}
+
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
@@ -98,8 +104,8 @@ function changeView(e) {
 
 function onEachFeature(feature, layer) {
     layer.on({
-        //mouseover: highlightFeature,
-        //mouseout: resetHighlight,
+        mouseover: highlightFeature,
+        mouseout: resetView,
         //click: zoomToFeature
         click: changeView
     });
