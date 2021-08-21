@@ -1,4 +1,4 @@
-var map = L.map('mapid').setView([37.8, -96], 4);
+var map = L.map('mapid', {'tap':false}).setView([37.8, -96], 4);
 
 // Map values from geoJSON to a color 
 function getColorBase(d) {
@@ -94,18 +94,22 @@ function zoomToFeature(e) {
 function changeView(e) {
     //code to change the displayed heatmaps to the matching intro index
     var clicklayer = e.target;
-    clicklayer.setStyle({fillColor: "#1a0080"});
-    geojson.eachLayer(function (layer, e = clicklayer) {
-        if (e.feature.id != layer.feature.id) {
-            layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
-        }
-    });
+    if (e.target.options.fillColor == "#1a0080") {
+        resetView(e);
+    } else {
+        clicklayer.setStyle({fillColor: "#1a0080"});
+        geojson.eachLayer(function (layer, e = clicklayer) {
+            if (e.feature.id != layer.feature.id) {
+                layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
+            }
+        });
+    }
 }
 
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        mouseout: resetView,
+        mouseout: resetHighlight,
         //click: zoomToFeature
         click: changeView
     });
