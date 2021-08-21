@@ -77,7 +77,14 @@ function highlightFeature(e) {
 }
 
 function resetHighlight(e) {
-    geojson.resetStyle(e.target);
+    //geojson.resetStyle(e.target);
+    e.target.setStyle({
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    })
     info.update();
 }
 
