@@ -1,5 +1,10 @@
 <html>
     <link rel="stylesheet" href="lib/leafletjs/leaflet.css">
+    <h1> GeoTree </h1>
+    <p>This website uses heuristics to track the movement of the SARS-CoV-2 novel coronavirus
+        through the United States of America by drawing on publicly available tagged
+        viral genetic sequences and phylogenetic tree constructed by <a href = "https://usher-wiki.readthedocs.io/en/latest/">UShER.</a>
+    </p>
     <script src="lib/leafletjs/leaflet.js"></script>
     <div id="mapid"></div>
     <style>
@@ -9,4 +14,13 @@
     </style>
     <script src="data/us-states.js"></script>
     <script src="src/main.js"></script>
+    <p>The above heatmap by default displays the count of inferred unique families of the virus in each state,
+        identified by counting clusters of viral sequences from an area that are closely related and appear 
+        to share a single common ancestor that entered the region from outside. 
+    </p>
+    <p>By clicking on a single state of interest, the display changes to an estimate of genetic flow
+        of the virus from other states. This metric is scaled by the total clusters detected in both 
+        the state of interest and the putative origin and generally reflects close geographic association, suggesting
+        the virus tends to cross interstate borders by land.
+    </p>
 </html>
