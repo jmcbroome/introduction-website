@@ -1,5 +1,4 @@
 filelines = {}
-header = "Cluster Source\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences\n"
 conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
 "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
 "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
@@ -28,7 +27,13 @@ with open("hardcoded_clusters.tsv") as inf:
             if "node" in spent[0]:
                 filelines[reg].append(entry.strip())
 
+header = "Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences"
 for reg, lines in filelines.items():
     with open("display_tables/" + reg + "_topclusters.csv", "w+") as outf:
+        print(header,file=outf)
         for l in lines:
-            print(l,file=outf)
+            #process the line 
+            #into something more parseable.
+            spent = l.split("\t")
+            outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11]]
+            print(",".join(outline),file=outf)
