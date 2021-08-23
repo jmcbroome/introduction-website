@@ -1,0 +1,6 @@
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
+node_145966	GA	98	2020-Oct-22	2020-Nov-07	B.1.1.186,20B	indeterminate	0
+node_4311	GA	30	2021-Jan-31	2021-Feb-02	B.1.349,20C	MA	0.0598291
+node_18050	GA	6	2021-Jan-19	2021-Jan-25	20G,B.1.2	UT,WI	0.0536193,0.0565525
+node_82566	GA	18	2021-Feb-09	2021-Feb-27	B.1.1.334,20A	CA	0.214286
+node_13287	GA	4	2021-Feb-09	2021-Feb-11	20G,B.1.2	MD,FL,MA,VA	0.0545455,0.0740741,0.103896,0.107143

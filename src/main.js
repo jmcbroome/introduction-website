@@ -94,6 +94,17 @@ function resetView(e) {
     });
 }
 
+function loadStateTable(e) {
+    let path = "data/display_tables/" + e.target.feature.properties.name + "_topclusters.tsv";
+    CsvToHtmlTable.init({
+        csv_path: path, 
+        element: 'table-container', 
+        allow_download: true,
+        csv_options: {separator: '\t', delimiter: '"'},
+        datatables_options: {"paging": false, "searching": false}
+      });
+}
+
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
@@ -104,6 +115,7 @@ function changeView(e) {
     if (e.target.options.fillColor == "#1a0080") {
         resetView(e);
     } else {
+        loadStateTable(e);
         clicklayer.setStyle({fillColor: "#1a0080"});
         geojson.eachLayer(function (layer, e = clicklayer) {
             if (e.feature.id != layer.feature.id) {

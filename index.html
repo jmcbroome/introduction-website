@@ -4,7 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="css/custom.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="manifest" href="/site.webmanifest">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -17,15 +21,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             through the United States of America by drawing on publicly available tagged
             viral genetic sequences and phylogenetic tree constructed by <a href = "https://usher-wiki.readthedocs.io/en/latest/">UShER.</a>
         </p>
-        <script src="lib/leafletjs/leaflet.js"></script>
         <div id="mapid"></div>
         <style>
             #mapid {
                 height: 400px;
             }
         </style>
-        <script src="data/us-states.js"></script>
-        <script src="src/main.js"></script>
+
         <p>The above heatmap by default displays the count of inferred unique families of the virus in each state,
             identified by counting clusters of viral sequences from an area that are closely related and appear 
             to share a single common ancestor that entered the region from outside. 
@@ -36,8 +38,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             the virus tends to cross interstate borders by land. Some regions have odd associations due to poor 
             sequencing and the amplification of weak signals by our scaling process.
         </p>
+        <link rel="stylesheet" href="css/custom.css">
         <div id="table-container"></div>
-
+        <script src="lib/leafletjs/leaflet.js"></script>
+        <script src="data/us-states.js"></script>
+        <!-- <script src="src/main.js"></script> -->
+        <script src="/src/main.js?ver<%=DateTime.Now.Ticks.ToString()%>" type="text/javascript"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
         <script src="src/jquery.csv.min.js"></script>

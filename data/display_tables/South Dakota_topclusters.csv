@@ -1,0 +1,6 @@
+Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences
+node_3363,SD,7,2020-Dec-10,2020-Dec-21,B.1.565,20A,SC,MN,0.0735294,0.35
+node_51222,SD,3,2020-Oct-07,2020-Oct-08,B.1.369,20C,MN,WI,0.230952,0.583893
+node_22250,SD,2,2020-Nov-18,2020-Nov-23,20G,B.1.2,MN,0.133333
+node_22422,SD,2,2021-Jan-25,2021-Jan-25,20G,B.1.2,MN,0.294118
+node_22570,SD,2,2020-Dec-14,2020-Dec-17,20G,B.1.2,CO,0.0648782

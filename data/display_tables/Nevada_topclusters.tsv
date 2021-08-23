@@ -1,0 +1,6 @@
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
+node_43116	NV	6	2021-Feb-11	2021-Feb-16	B.1.427,20C	CA	0.714286
+node_23693	NV	5	2021-Jan-28	2021-Jan-31	20G,B.1.2	LA,KY,OH,CO,FL	0.0869565,0.153846,0.153846,0.16,0.304348
+node_26629	NV	4	2021-Feb-20	2021-Feb-25	20G,B.1.2	FL,CO	0.0775194,0.172414
+node_42083	NV	4	2021-Feb-17	2021-Feb-17	B.1.427,20C	CA	0.516194
+node_43753	NV	17	2021-Jan-25	2021-Feb-24	B.1.427,20C	CA	0.346253

@@ -1,0 +1,6 @@
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
+node_227362	OH	8	2021-Mar-07	2021-Mar-07	20I/501Y.V1,B.1.1.7	indeterminate	0
+node_187030	OH	40	2021-Feb-05	2021-Mar-14	20I/501Y.V1,B.1.1.7	TX,FL	0.079918,0.625111
+node_187072	OH	21	2021-Feb-17	2021-Mar-17	20I/501Y.V1,B.1.1.7	GA,FL	0.16092,0.172414
+node_143304	OH	4	2021-Feb-11	2021-Feb-14	P.2,20B	GA,IN	0.15,0.166667
+node_16446	OH	4	2021-Feb-12	2021-Feb-18	20G,B.1.2	FL	0.206573

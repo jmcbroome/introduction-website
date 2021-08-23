@@ -1,0 +1,6 @@
+Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences
+node_13075,WY,2,2020-Dec-05,2020-Dec-05,B.1.595,20C,CA,0.619048
+node_35678,WY,2,2021-Feb-10,2021-Feb-10,20G,B.1.2,CA,0.142857
+node_15387,WY,1,2021-Jan-29,2021-Jan-29,20G,B.1.2,indeterminate,0
+node_155710,WY,1,2020-Dec-23,2020-Dec-26,B.1.1.210,20B,VT,MN,FL,0.0833333,0.127208,0.136364
+node_20938,WY,2,2021-Feb-18,2021-Feb-26,20G,B.1.2,indeterminate,0

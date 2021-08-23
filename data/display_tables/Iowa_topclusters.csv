@@ -1,0 +1,6 @@
+Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences
+node_132733,IA,2,2021-Feb-17,2021-Feb-23,B.1.1.519,20B,WA,0.0597015
+node_136659,IA,2,2021-Jan-14,2021-Jan-14,B.1.1.316,20B,CA,TX,0.116022,0.875
+node_24956,IA,2,2021-Feb-22,2021-Feb-25,20G,B.1.2,IL,0.0833333
+node_132891,IA,1,2021-Feb-02,2021-Feb-02,B.1.1.519,20B,TX,0.618557
+node_13973,IA,1,2021-Jan-02,2021-Jan-02,20G,B.1.2,CO,GA,0.0697674,0.0869565

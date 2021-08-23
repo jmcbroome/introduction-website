@@ -1,0 +1,6 @@
+Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences
+node_52487,TX,29,2020-Jul-16,2020-Jul-16,20C,B.1.371,indeterminate,0
+node_83369,TX,19,2020-Oct-04,2020-Oct-04,B.1.396,20A,indeterminate,0
+node_38257,TX,75,2020-May-14,2020-Jun-10,B.1.595,20C,indeterminate,0
+node_40948,TX,18,2020-Jun-24,2020-Jun-29,B.1.324,20C,indeterminate,0
+node_50772,TX,14,2020-Oct-06,2020-Oct-06,B.1.369,20C,indeterminate,0

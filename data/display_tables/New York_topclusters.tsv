@@ -1,0 +1,6 @@
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
+node_32029	NY	9	2021-Feb-22	2021-Feb-24	20G,B.1.2	PA,MD	0.0714286,0.142857
+node_14733	NY	5	2021-Feb-10	2021-Feb-12	20G,B.1.2	indeterminate	0
+node_52966	NY	5	2020-Mar-15	2020-Mar-17	20C,B.1.371	CA	0.0739396
+node_14723	NY	4	2021-Feb-10	2021-Feb-11	20G,B.1.2	indeterminate	0
+node_16979	NY	7	2021-Feb-10	2021-Feb-23	20G,B.1.2	MA	0.307692
