@@ -17,6 +17,7 @@ conversion.update({v:k for k,v in conversion.items()})
 conversion["indeterminate"] = "indeterminate"
 #ivc = cdf.region.value_counts()
 invc = {}
+svc = {}
 otvc = {}
 ovc = {}
 with open("hardcoded_clusters.tsv") as inf:
@@ -28,6 +29,9 @@ with open("hardcoded_clusters.tsv") as inf:
         if spent[10] == "indeterminate":
             continue
         #reg = spent[9]
+        if reg not in svc:
+            svc[reg] = 0
+        svc[reg] += spent[-1].count(',') + 1
         if reg not in invc:
             invc[reg] = 0
         invc[reg] += 1
@@ -54,7 +58,7 @@ with open("us-states.js") as inf:
             continue
         data = ast.literal_eval(entry.strip().strip(","))
         data["properties"]["intros"] = {}
-        data["properties"]["intros"]["basecount"] = invc[data["properties"]["name"]]
+        data["properties"]["intros"]["basecount"] = invc[data["properties"]["name"]] #/ svc[data["properties"]["name"]]
         svd["features"].append(data)
         sids[data["properties"]["name"]] = data["id"]
 #update the data intros list with specific state values

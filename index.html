@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="css/custom.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -32,8 +33,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <p>By clicking on a single state of interest, the display changes to an estimate of genetic flow
             of the virus from other states. This metric is scaled by the total clusters detected in both 
             the state of interest and the putative origin. Generally it reflects close geographic association, suggesting
-            the virus tends to cross interstate borders by land. Some regions have odd associations due to being poorly 
-            sequenced and the amplification of weak signals by our scaling process.
+            the virus tends to cross interstate borders by land. Some regions have odd associations due to poor 
+            sequencing and the amplification of weak signals by our scaling process.
         </p>
+        <div id="table-container"></div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+        <script src="src/jquery.csv.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="src/csv_to_html_table.js"></script>        
+        <script>
+            CsvToHtmlTable.init({
+              csv_path: 'data/mini_clusters.tsv', 
+              element: 'table-container', 
+              allow_download: true,
+              csv_options: {separator: '\t', delimiter: '"'},
+              datatables_options: {"paging": false}
+            });
+          </script>
     </body>
 </html>
