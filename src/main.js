@@ -95,7 +95,7 @@ function resetView(e) {
     CsvToHtmlTable.init({
         csv_path: 'data/display_tables/default_clusters.tsv', 
         element: 'table-container', 
-        allow_download: true,
+        allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
         datatables_options: {"paging": false, "searching":false}
     });
@@ -106,7 +106,7 @@ function loadStateTable(e) {
     CsvToHtmlTable.init({
         csv_path: path, 
         element: 'table-container', 
-        allow_download: true,
+        allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
         datatables_options: {"paging": false, "searching": false}
       });

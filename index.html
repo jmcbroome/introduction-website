@@ -54,10 +54,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             CsvToHtmlTable.init({
               csv_path: 'data/display_tables/default_clusters.tsv', 
               element: 'table-container', 
-              allow_download: true,
+              allow_download: false,
               csv_options: {separator: '\t', delimiter: '"'},
               datatables_options: {"paging": false, "searching":false}
             });
-          </script>
+        </script>
+        <a href = "data/hardcoded_clusters.tsv", download = "sarscov2_clusters.tsv">Download full dataset.</a>
     </body>
 </html>
