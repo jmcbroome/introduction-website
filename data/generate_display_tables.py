@@ -8,10 +8,11 @@ conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"
 "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
 "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
 
+default_lines = {}
 with open("hardcoded_clusters.tsv") as inf:
     for entry in inf:
         spent = entry.strip().split("\t")
-        if spent[0] == "cluster_id":
+        if spent[0] == "cluster_id" or spent[3] == "no-valid-date":
             continue
         #the output clusters table is already sorted by 
         #growth score, so we can use that sorting information
@@ -26,6 +27,13 @@ with open("hardcoded_clusters.tsv") as inf:
             #oh well.
             if "node" in spent[0]:
                 filelines[reg].append(entry.strip())
+        #now, check to see if this scores in the top five overall.
+        if len(default_lines) < 5:
+            default_lines[float(spent[4])] = entry.strip()
+        elif float(spent[4]) > max(default_lines.keys()):
+            default_lines.pop(min(default_lines.keys()))
+            default_lines[float(spent[4])] = entry.strip()
+            assert len(default_lines) == 5
 
 header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences"
 for reg, lines in filelines.items():
@@ -37,3 +45,10 @@ for reg, lines in filelines.items():
             spent = l.split("\t")
             outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11]]
             print("\t".join(outline),file=outf)
+sorted_default_keys = sorted(list(default_lines.keys()),reverse=True)
+with open("display_tables/default_clusters.tsv","w+") as outf:
+    print(header,file=outf)
+    for k in sorted_default_keys:
+        spent = default_lines[k].split("\t")
+        outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11]]
+        print("\t".join(outline), file = outf)

@@ -92,6 +92,13 @@ function resetView(e) {
     geojson.eachLayer(function (layer) {
         geojson.resetStyle(layer);
     });
+    CsvToHtmlTable.init({
+        csv_path: 'data/display_tables/default_clusters.tsv', 
+        element: 'table-container', 
+        allow_download: true,
+        csv_options: {separator: '\t', delimiter: '"'},
+        datatables_options: {"paging": false, "searching":false}
+    });
 }
 
 function loadStateTable(e) {

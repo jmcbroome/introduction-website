@@ -1,6 +1,6 @@
 Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_58220	VA	57	no-valid-date	no-valid-date	B.1.187,20A	MA	0.0591587
 node_4994	VA	53	2020-May-19	2020-May-19	20C,B.1.371	CA	0.0739396
-node_161181	VA	45	no-valid-date	no-valid-date	B.1.1.231,20B	FL	0.206642
-node_55064	VA	33	no-valid-date	no-valid-date	20C,B.1.371	CA	0.0739396
-node_70859	VA	29	no-valid-date	no-valid-date	B.1.439,20A	indeterminate	0
+node_10196	VA	21	2020-May-03	2020-May-03	B.1.503,20C	CO,CA	0.0841751,0.423515
+node_50649	VA	34	2021-Jan-12	2021-Jan-20	B.1.369,20C	MD,MA	0.0526316,0.128342
+node_15171	VA	71	2021-Jan-05	2021-Mar-11	20G,B.1.2	indeterminate	0
+node_28269	VA	7	2020-Dec-27	2020-Dec-27	20G,B.1.2	CO	0.0733411

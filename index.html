@@ -52,11 +52,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <script src="src/csv_to_html_table.js"></script>        
         <script>
             CsvToHtmlTable.init({
-              csv_path: 'data/mini_clusters.tsv', 
+              csv_path: 'data/display_tables/default_clusters.tsv', 
               element: 'table-container', 
               allow_download: true,
               csv_options: {separator: '\t', delimiter: '"'},
-              datatables_options: {"paging": false}
+              datatables_options: {"paging": false, "searching":false}
             });
           </script>
     </body>

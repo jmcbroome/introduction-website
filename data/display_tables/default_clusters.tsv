@@ -1,0 +1,6 @@
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
+node_186994	FL	594	2020-Dec-19	2021-Mar-02	20I/501Y.V1,B.1.1.7	indeterminate	0
+node_49472	CA	169	2020-Nov-11	2020-Dec-27	B.1.311,20C	indeterminate	0
+node_40996	AR	62	2020-Jul-03	2020-Jul-23	20C,B.1.371	indeterminate	0
+node_52410	AL	4	2020-Nov-04	2020-Nov-04	B.1.366,20C	TX	0.125
+node_94889	AK	13	2020-May-27	2020-Jul-01	B.1.181,20A	indeterminate	0
