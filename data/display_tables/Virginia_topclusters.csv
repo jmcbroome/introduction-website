@@ -1,6 +1,0 @@
-Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences
-node_58220,VA,57,no-valid-date,no-valid-date,B.1.187,20A,MA,0.0591587
-node_4994,VA,53,2020-May-19,2020-May-19,20C,B.1.371,CA,0.0739396
-node_161181,VA,45,no-valid-date,no-valid-date,B.1.1.231,20B,FL,0.206642
-node_55064,VA,33,no-valid-date,no-valid-date,20C,B.1.371,CA,0.0739396
-node_70859,VA,29,no-valid-date,no-valid-date,B.1.439,20A,indeterminate,0

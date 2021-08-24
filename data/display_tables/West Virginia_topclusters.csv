@@ -1,6 +1,0 @@
-Cluster ID,Region,Sample Count,Earliest Date,Latest Date,Clade/Lineage,Inferred Origins,Inferred Origin Confidences
-node_15187,WV,6,2021-Feb-25,2021-Mar-08,20G,B.1.2,NC,VA,0.0545455,0.857143
-node_26045,WV,3,2021-Jan-03,2021-Jan-03,20G,B.1.2,PA,0.157895
-node_159740,WV,9,2021-Feb-08,2021-Mar-05,B.1.1.419,20B,MD,0.222222
-node_119074,WV,2,2021-Jan-13,2021-Jan-15,W.1,20E.EU1,FL,VA,0.0588235,0.25
-node_15050,WV,2,2021-Feb-06,2021-Feb-06,20G,B.1.2,NE,AZ,0.1,0.142857
