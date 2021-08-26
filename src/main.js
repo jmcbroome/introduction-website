@@ -98,9 +98,8 @@ function resetView(e) {
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
         datatables_options: {"paging": false, "searching": false, 
-        "columns": [{
+        "columnDefs": [{
             "targets":-1,
-            // "data":"Link to View",
             "render":
                 function (data,type,row,meta) {
                     return '<a href="' + data + '">View Cluster</a>'
@@ -117,9 +116,8 @@ function loadStateTable(e) {
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
         datatables_options: {"paging": false, "searching": false, 
-        "columns": [{
+        "columnDefs": [{
             "targets":-1,
-            // "data":"Link to View",
             "render":
                 function (data,type,row,meta) {
                     return '<a href="' + data + '">View Cluster</a>'
