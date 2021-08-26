@@ -72,5 +72,8 @@ with open("display_tables/default_clusters.tsv","w+") as outf:
     print(header,file=outf)
     for k in sorted_default_keys:
         spent = default_lines[k].split("\t")
-        outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11]]
+        link = "https://nextstrain.org/fetch/" + host + "data/display_json/"
+        link += spent[-1].split(',')[0].replace("/","_") 
+        link += "_context.json?c=cluster"
+        outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], link]
         print("\t".join(outline), file = outf)
