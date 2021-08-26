@@ -101,11 +101,10 @@ function resetView(e) {
         "columns": [{
             "targets":-1,
             // "data":"Link to View",
-            "render":{
+            "render":
                 function (data,type,row,meta) {
                     return '<a href="' + data + '">View Cluster</a>'
                 }
-            }
         }],
         }    });
 }
@@ -121,11 +120,10 @@ function loadStateTable(e) {
         "columns": [{
             "targets":-1,
             // "data":"Link to View",
-            "render":{
+            "render":
                 function (data,type,row,meta) {
                     return '<a href="' + data + '">View Cluster</a>'
                 }
-            }
         }],
         }    });
 }

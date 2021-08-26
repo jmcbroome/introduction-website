@@ -59,10 +59,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                 "columns": [{
                     "targets":-1,
                     // "data":"Link to View",
-                    "render":{
-                        function (data,type,row,meta) {
-                            return '<a href="' + data + '">View Cluster</a>'
-                        }
+                    "render":
+                    function (data,type,row,meta) {
+                        return '<a href="' + data + '">View Cluster</a>'
                     }
                 }],
                 }
