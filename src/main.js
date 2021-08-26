@@ -108,7 +108,7 @@ function loadStateTable(e) {
         element: 'table-container', 
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
-        datatables_options: {"paging": false, "searching": false}
+        datatables_options: {"paging": false, "searching": false, "columnDefs": {"data":"Link to View","render":{function (data,type,row,meta) {return '<a href="' + data + '">View Cluster</a>'}}}}
       });
 }
 
