@@ -40,6 +40,7 @@ with open("hardcoded_clusters.tsv") as inf:
 header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences\tLink to View"
 sout = open("extraction_targets.txt","w+")
 mout = open("cluster_labels.tsv","w+")
+print("sample\tcluster",file=mout)
 for reg, lines in filelines.items():
     with open("display_tables/" + reg + "_topclusters.tsv", "w+") as outf:
         print(header,file=outf)
@@ -59,7 +60,7 @@ for reg, lines in filelines.items():
             #link = '<a href="'
             link = "https://nextstrain.org/fetch/" + host + "data/display_json/"
             link += spent[-1].split(',')[0].replace("/","_") 
-            link += "_context.json?c=" + spent[0]
+            link += "_context.json?c=cluster"
             #link += '">View ' + spent[0] + "</a>"
             outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], link]
             print("\t".join(outline),file=outf)
