@@ -55,7 +55,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
               element: 'table-container', 
               allow_download: false,
               csv_options: {separator: '\t', delimiter: '"'},
-              datatables_options: {"paging": false, "searching": false, "columnDefs": {"data":"Link to View","render":{function (data,type,row,meta) {return '<a href="' + data + '">View Cluster</a>'}}}}
+              datatables_options: {"paging": false, "searching": false, "columnDefs": [{"data":"Link to View","render":{function (data,type,row,meta) {return '<a href="' + data + '">View Cluster</a>'}}}]}
             });
         </script>
         <a href = "data/hardcoded_clusters.tsv", download = "sarscov2_clusters.tsv">Download full dataset.</a>
