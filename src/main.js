@@ -106,7 +106,7 @@ function resetView(e) {
                     return '<a href="' + data + '">View Cluster</a>'
                 }
             }
-        }]
+        }],
         }    });
 }
 
@@ -126,7 +126,7 @@ function loadStateTable(e) {
                     return '<a href="' + data + '">View Cluster</a>'
                 }
             }
-        }]
+        }],
         }    });
 }
 
