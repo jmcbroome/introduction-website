@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_186994	FL	594	2020-Dec-19	2021-Mar-02	20I/501Y.V1,B.1.1.7	indeterminate	0
-node_136984	FL	102	2021-Jan-01	2021-Mar-11	B.1.1.348,20B	indeterminate	0
-node_43283	FL	103	2021-Jan-04	2021-Mar-15	B.1.427,20C	CA	0.19548
-node_233072	FL	37	2020-Mar-24	2020-Apr-17	A.3,19B	MD	0.0546318
-node_56029	FL	9	2020-Jul-14	2020-Jul-14	B.1.509,20C	indeterminate	0
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_186994	FL	594	2020-Dec-19	2021-Mar-02	20I/501Y.V1,B.1.1.7	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_FL-BPHL-0529_2021|MW689794.1|21-02-03_context.json?c=node_186994">View node_186994</a>
+node_136984	FL	102	2021-Jan-01	2021-Mar-11	B.1.1.348,20B	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_FL-BPHL-0578_2021|MW689843.1|21-02-05_context.json?c=node_136984">View node_136984</a>
+node_43283	FL	103	2021-Jan-04	2021-Mar-15	B.1.427,20C	CA	0.19548	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_FL-BPHL-0062_2021|MW586587.1|21-01-17_context.json?c=node_43283">View node_43283</a>
+node_233072	FL	37	2020-Mar-24	2020-Apr-17	A.3,19B	MD	0.0546318	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_FL-BPHL-0193_2020|MT704011.1|20-04-05_context.json?c=node_233072">View node_233072</a>
+node_56029	FL	9	2020-Jul-14	2020-Jul-14	B.1.509,20C	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_FL-BPHL-1327_2020|MW023526.1|20-07-14_context.json?c=node_56029">View node_56029</a>

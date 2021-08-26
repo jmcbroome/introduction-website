@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_43116	NV	6	2021-Feb-11	2021-Feb-16	B.1.427,20C	CA	0.714286
-node_23693	NV	5	2021-Jan-28	2021-Jan-31	20G,B.1.2	LA,KY,OH,CO,FL	0.0869565,0.153846,0.153846,0.16,0.304348
-node_26629	NV	4	2021-Feb-20	2021-Feb-25	20G,B.1.2	FL,CO	0.0775194,0.172414
-node_42083	NV	4	2021-Feb-17	2021-Feb-17	B.1.427,20C	CA	0.516194
-node_43753	NV	17	2021-Jan-25	2021-Feb-24	B.1.427,20C	CA	0.346253
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_43116	NV	6	2021-Feb-11	2021-Feb-16	B.1.427,20C	CA	0.714286	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NV-CDC-22025852_2021|MW680506.1|21-02-11_context.json?c=node_43116">View node_43116</a>
+node_23693	NV	5	2021-Jan-28	2021-Jan-31	20G,B.1.2	LA,KY,OH,CO,FL	0.0869565,0.153846,0.153846,0.16,0.304348	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NV-CDC-21611907_2021|MW666447.1|21-01-31_context.json?c=node_23693">View node_23693</a>
+node_26629	NV	4	2021-Feb-20	2021-Feb-25	20G,B.1.2	FL,CO	0.0775194,0.172414	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NV-CDC-22292609_2021|MW733335.1|21-02-20_context.json?c=node_26629">View node_26629</a>
+node_42083	NV	4	2021-Feb-17	2021-Feb-17	B.1.427,20C	CA	0.516194	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NV-CDC-22165204_2021|MW720420.1|21-02-17_context.json?c=node_42083">View node_42083</a>
+node_43753	NV	17	2021-Jan-25	2021-Feb-24	B.1.427,20C	CA	0.346253	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NV-CDC-21490394_2021|MW667243.1|21-01-25_context.json?c=node_43753">View node_43753</a>

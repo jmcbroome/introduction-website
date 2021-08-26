@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_56289	UT	19	2020-Jul-06	2020-Jul-06	B.1.108,20C	VA	0.0666667
-node_128406	UT	242	2020-Mar-19	2020-Jun-19	B.1.187,20A	indeterminate	0
-node_52060	UT	60	2020-Apr-18	2020-May-29	20C,B.1.371	CA	0.0739396
-node_38784	UT	338	2020-Apr-06	2020-Dec-29	B.1.521,20C	indeterminate	0
-node_40953	UT	8	2020-Aug-11	2020-Aug-17	B.1.324,20C	indeterminate	0
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_56289	UT	19	2020-Jul-06	2020-Jul-06	B.1.108,20C	VA	0.0666667	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_UT-UPHL-201000094_2020|MW181440.1|20-07-06_context.json?c=node_56289">View node_56289</a>
+node_128406	UT	242	2020-Mar-19	2020-Jun-19	B.1.187,20A	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_UT-00139_2020|MW053745.1|20-03-19_context.json?c=node_128406">View node_128406</a>
+node_52060	UT	60	2020-Apr-18	2020-May-29	20C,B.1.371	CA	0.0739396	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_UT-02513_2020|MW053892.1|20-04-23_context.json?c=node_52060">View node_52060</a>
+node_38784	UT	338	2020-Apr-06	2020-Dec-29	B.1.521,20C	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_UT-00899_2020|MT444601.1|20-04-07_context.json?c=node_38784">View node_38784</a>
+node_40953	UT	8	2020-Aug-11	2020-Aug-17	B.1.324,20C	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_UT-UPHL-2012036481_2020|MW420075.1|20-08-17_context.json?c=node_40953">View node_40953</a>

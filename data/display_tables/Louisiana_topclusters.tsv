@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_13190	LA	54	2020-May-07	2020-Jun-14	B.1.595,20C	TX	0.0516892
-node_134042	LA	7	2021-Feb-22	2021-Feb-23	B.1.1.519,20B	FL,MA	0.0869565,0.114625
-node_45656	LA	4	2021-Feb-23	2021-Feb-28	B.1.429,20C	TX,CA	0.127273,0.140351
-node_12528	LA	3	2021-Feb-08	2021-Feb-09	B.1.577,20C	indeterminate	0
-node_134118	LA	3	2021-Feb-25	2021-Feb-27	B.1.1.519,20B	indeterminate	0
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_13190	LA	54	2020-May-07	2020-Jun-14	B.1.595,20C	TX	0.0516892	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_LA-CDC-1264_2020|MT997949.1|20-06-11_context.json?c=node_13190">View node_13190</a>
+node_134042	LA	7	2021-Feb-22	2021-Feb-23	B.1.1.519,20B	FL,MA	0.0869565,0.114625	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_LA-CDC-22282563_2021|MW719848.1|21-02-22_context.json?c=node_134042">View node_134042</a>
+node_45656	LA	4	2021-Feb-23	2021-Feb-28	B.1.429,20C	TX,CA	0.127273,0.140351	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_LA-CDC-22357514_2021|MW733639.1|21-02-23_context.json?c=node_45656">View node_45656</a>
+node_12528	LA	3	2021-Feb-08	2021-Feb-09	B.1.577,20C	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_LA-CDC-21840968_2021|MW669232.1|21-02-08_context.json?c=node_12528">View node_12528</a>
+node_134118	LA	3	2021-Feb-25	2021-Feb-27	B.1.1.519,20B	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_LA-CDC-22490011_2021|MW763630.1|21-02-27_context.json?c=node_134118">View node_134118</a>

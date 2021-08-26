@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_77853	NJ	4	2021-Feb-22	2021-Feb-22	B.1.243,20A	WA,PA,VA	0.0740741,0.240964,0.240964
-node_148635	NJ	3	2021-Mar-06	2021-Mar-08	20D,B.1.1.1	FL	0.842105
-node_184233	NJ	3	2021-Jan-31	2021-Feb-02	20I/501Y.V1,B.1.1.7	MA,NY,MD	0.0930233,0.0930233,0.130435
-node_24002	NJ	6	2021-Feb-28	2021-Mar-08	20G,B.1.2	MD	0.325301
-node_30445	NJ	3	2021-Feb-24	2021-Mar-02	20G,B.1.2	PA	0.555556
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_77853	NJ	4	2021-Feb-22	2021-Feb-22	B.1.243,20A	WA,PA,VA	0.0740741,0.240964,0.240964	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NJ-CDC-2-3980086_2021|MW766414.1|21-02-22_context.json?c=node_77853">View node_77853</a>
+node_148635	NJ	3	2021-Mar-06	2021-Mar-08	20D,B.1.1.1	FL	0.842105	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NJ-CDC-LC0027038_2021|MW813545.1|21-03-06_context.json?c=node_148635">View node_148635</a>
+node_184233	NJ	3	2021-Jan-31	2021-Feb-02	20I/501Y.V1,B.1.1.7	MA,NY,MD	0.0930233,0.0930233,0.130435	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NJ-CDC-LC0012298_2021|MW721558.1|21-01-31_context.json?c=node_184233">View node_184233</a>
+node_24002	NJ	6	2021-Feb-28	2021-Mar-08	20G,B.1.2	MD	0.325301	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NJ-CDC-LC0022085_2021|MW779972.1|21-02-28_context.json?c=node_24002">View node_24002</a>
+node_30445	NJ	3	2021-Feb-24	2021-Mar-02	20G,B.1.2	PA	0.555556	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NJ-CDC-LC0021937_2021|MW779840.1|21-02-24_context.json?c=node_30445">View node_30445</a>

@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_16264	KS	4	2021-Jan-28	2021-Feb-02	20G,B.1.2	FL,NJ,IN,IL,MO	0.0526316,0.0608696,0.0886076,0.105263,0.368421
-node_28243	KS	4	2021-Jan-28	2021-Feb-01	20G,B.1.2	TX	0.0506329
-node_43071	KS	3	2021-Feb-24	2021-Mar-01	B.1.427,20C	VA,CA	0.0503401,0.23741
-node_12661	KS	2	2021-Feb-02	2021-Feb-02	B.1.577,20C	CA	0.104895
-node_12766	KS	2	2021-Feb-01	2021-Feb-03	B.1.577,20C	FL,MO	0.2,0.210526
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_16264	KS	4	2021-Jan-28	2021-Feb-02	20G,B.1.2	FL,NJ,IN,IL,MO	0.0526316,0.0608696,0.0886076,0.105263,0.368421	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_KS-CDC-LC0011458_2021|MW643233.1|21-01-28_context.json?c=node_16264">View node_16264</a>
+node_28243	KS	4	2021-Jan-28	2021-Feb-01	20G,B.1.2	TX	0.0506329	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_KS-CDC-2-3846603_2021|MW708632.1|21-01-28_context.json?c=node_28243">View node_28243</a>
+node_43071	KS	3	2021-Feb-24	2021-Mar-01	B.1.427,20C	VA,CA	0.0503401,0.23741	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_KS-CDC-22316440_2021|MW733670.1|21-02-24_context.json?c=node_43071">View node_43071</a>
+node_12661	KS	2	2021-Feb-02	2021-Feb-02	B.1.577,20C	CA	0.104895	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_KS-CDC-21641893_2021|MW666417.1|21-02-02_context.json?c=node_12661">View node_12661</a>
+node_12766	KS	2	2021-Feb-01	2021-Feb-03	B.1.577,20C	FL,MO	0.2,0.210526	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_KS-CDC-21606157_2021|MW666763.1|21-02-01_context.json?c=node_12766">View node_12766</a>

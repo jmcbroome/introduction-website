@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_30862	TN	3	2021-Feb-08	2021-Feb-11	20G,B.1.2	CA	0.0641026
-node_35573	TN	3	2021-Jan-18	2021-Jan-18	20G,B.1.2	MI,WI	0.0597015,0.0689655
-node_13598	TN	2	2020-Nov-16	2020-Nov-16	20G,B.1.2	GA	0.0909091
-node_13857	TN	2	2021-Feb-09	2021-Feb-09	20G,B.1.2	NC	0.6
-node_13899	TN	2	2021-Feb-08	2021-Feb-10	20G,B.1.2	indeterminate	0
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_30862	TN	3	2021-Feb-08	2021-Feb-11	20G,B.1.2	CA	0.0641026	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_TN-CDC-LC0015846_2021|MW706008.1|21-02-10_context.json?c=node_30862">View node_30862</a>
+node_35573	TN	3	2021-Jan-18	2021-Jan-18	20G,B.1.2	MI,WI	0.0597015,0.0689655	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_TN-CDC-LC0007841_2021|MW637001.1|21-01-18_context.json?c=node_35573">View node_35573</a>
+node_13598	TN	2	2020-Nov-16	2020-Nov-16	20G,B.1.2	GA	0.0909091	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_TN-CDC-MN0O-6914_2020|MW482941.1|20-11-16_context.json?c=node_13598">View node_13598</a>
+node_13857	TN	2	2021-Feb-09	2021-Feb-09	20G,B.1.2	NC	0.6	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_TN-CDC-2-4011864_2021|MW792655.1|21-02-09_context.json?c=node_13857">View node_13857</a>
+node_13899	TN	2	2021-Feb-08	2021-Feb-10	20G,B.1.2	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_TN-CDC-STM-000011216_2021|MW673192.1|21-02-08_context.json?c=node_13899">View node_13899</a>

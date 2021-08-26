@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_227362	OH	8	2021-Mar-07	2021-Mar-07	20I/501Y.V1,B.1.1.7	indeterminate	0
-node_187030	OH	40	2021-Feb-05	2021-Mar-14	20I/501Y.V1,B.1.1.7	TX,FL	0.079918,0.625111
-node_187072	OH	21	2021-Feb-17	2021-Mar-17	20I/501Y.V1,B.1.1.7	GA,FL	0.16092,0.172414
-node_143304	OH	4	2021-Feb-11	2021-Feb-14	P.2,20B	GA,IN	0.15,0.166667
-node_16446	OH	4	2021-Feb-12	2021-Feb-18	20G,B.1.2	FL	0.206573
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_227362	OH	8	2021-Mar-07	2021-Mar-07	20I/501Y.V1,B.1.1.7	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OH-UHTL-223_2021|MW788915.1|21-03-07_context.json?c=node_227362">View node_227362</a>
+node_187030	OH	40	2021-Feb-05	2021-Mar-14	20I/501Y.V1,B.1.1.7	TX,FL	0.079918,0.625111	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OH-UHTL-100_2021|MW699910.1|21-03-01_context.json?c=node_187030">View node_187030</a>
+node_187072	OH	21	2021-Feb-17	2021-Mar-17	20I/501Y.V1,B.1.1.7	GA,FL	0.16092,0.172414	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OH-UHTL-105_2021|MW699915.1|21-02-17_context.json?c=node_187072">View node_187072</a>
+node_143304	OH	4	2021-Feb-11	2021-Feb-14	P.2,20B	GA,IN	0.15,0.166667	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OH-CDC-22026910_2021|MW697917.1|21-02-11_context.json?c=node_143304">View node_143304</a>
+node_16446	OH	4	2021-Feb-12	2021-Feb-18	20G,B.1.2	FL	0.206573	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OH-CDC-22026758_2021|MW680574.1|21-02-12_context.json?c=node_16446">View node_16446</a>

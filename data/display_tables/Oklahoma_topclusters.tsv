@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_26253	OK	3	2021-Jan-17	2021-Jan-20	20G,B.1.2	PA	0.079602
-node_27024	OK	3	2021-Feb-01	2021-Feb-01	20G,B.1.2	indeterminate	0
-node_13484	OK	2	2021-Feb-01	2021-Feb-01	20G,B.1.2	IL,IN	0.1,0.652174
-node_146505	OK	2	2020-Sep-16	2020-Sep-16	C.23,20D	PA	0.0766629
-node_18442	OK	2	2021-Feb-01	2021-Feb-01	20G,B.1.2	WI,KS,TX	0.0727273,0.0810811,0.0816327
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_26253	OK	3	2021-Jan-17	2021-Jan-20	20G,B.1.2	PA	0.079602	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OK-CDC-STM-000003568_2021|MW585955.1|21-01-17_context.json?c=node_26253">View node_26253</a>
+node_27024	OK	3	2021-Feb-01	2021-Feb-01	20G,B.1.2	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OK-CDC-2-3935604_2021|MW731359.1|21-02-01_context.json?c=node_27024">View node_27024</a>
+node_13484	OK	2	2021-Feb-01	2021-Feb-01	20G,B.1.2	IL,IN	0.1,0.652174	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OK-CDC-LC0012789_2021|MW643806.1|21-02-01_context.json?c=node_13484">View node_13484</a>
+node_146505	OK	2	2020-Sep-16	2020-Sep-16	C.23,20D	PA	0.0766629	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OK-QDX-3335_2020|MW522476.1|20-09-16_context.json?c=node_146505">View node_146505</a>
+node_18442	OK	2	2021-Feb-01	2021-Feb-01	20G,B.1.2	WI,KS,TX	0.0727273,0.0810811,0.0816327	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_OK-CDC-LC0012802_2021|MW643810.1|21-02-01_context.json?c=node_18442">View node_18442</a>

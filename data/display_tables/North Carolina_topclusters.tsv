@@ -1,6 +1,6 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences
-node_32628	NC	6	2021-Feb-02	2021-Feb-02	20G,B.1.2	indeterminate	0
-node_133708	NC	27	2021-Feb-07	2021-Mar-08	B.1.1.519,20B	indeterminate	0
-node_32850	NC	52	2021-Jan-02	2021-Mar-09	20G,B.1.2	indeterminate	0
-node_161025	NC	5	2020-Apr-30	2020-Apr-30	B.1.1.419,20B	indeterminate	0
-node_160450	NC	14	2021-Feb-14	2021-Mar-06	B.1.1.207,20B	SC,VA,FL	0.0730594,0.126551,0.131846
+Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
+node_32628	NC	6	2021-Feb-02	2021-Feb-02	20G,B.1.2	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NC-CDC-21707653_2021|MW668849.1|21-02-02_context.json?c=node_32628">View node_32628</a>
+node_133708	NC	27	2021-Feb-07	2021-Mar-08	B.1.1.519,20B	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NC-CDC-LC0017365_2021|MW706837.1|21-02-15_context.json?c=node_133708">View node_133708</a>
+node_32850	NC	52	2021-Jan-02	2021-Mar-09	20G,B.1.2	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NC-CDC-2-3858670_2021|MW708214.1|21-01-20_context.json?c=node_32850">View node_32850</a>
+node_161025	NC	5	2020-Apr-30	2020-Apr-30	B.1.1.419,20B	indeterminate	0	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NC-QDX-201_2020|MT786828.1|20-04-30_context.json?c=node_161025">View node_161025</a>
+node_160450	NC	14	2021-Feb-14	2021-Mar-06	B.1.1.207,20B	SC,VA,FL	0.0730594,0.126551,0.131846	<a href="https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_NC-CDC-LC0017249_2021|MW706761.1|21-02-14_context.json?c=node_160450">View node_160450</a>
