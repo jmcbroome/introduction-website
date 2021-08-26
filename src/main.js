@@ -99,7 +99,7 @@ function resetView(e) {
         csv_options: {separator: '\t', delimiter: '"'},
         datatables_options: {"paging": false, "searching": false, 
         "columns": [{
-            "targets":8,
+            "targets":-1,
             // "data":"Link to View",
             "render":{
                 function (data,type,row,meta) {
@@ -119,7 +119,7 @@ function loadStateTable(e) {
         csv_options: {separator: '\t', delimiter: '"'},
         datatables_options: {"paging": false, "searching": false, 
         "columns": [{
-            "targets":8,
+            "targets":-1,
             // "data":"Link to View",
             "render":{
                 function (data,type,row,meta) {
