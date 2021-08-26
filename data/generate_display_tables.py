@@ -56,11 +56,11 @@ for reg, lines in filelines.items():
             #generate a link to exist in the last column
             #based on the global "host" variable.
             #and including all html syntax.
-            link = '<a href="'
-            link += "https://nextstrain.org/fetch/" + host + "data/display_json/"
+            #link = '<a href="'
+            link = "https://nextstrain.org/fetch/" + host + "data/display_json/"
             link += spent[-1].split(',')[0].replace("/","_") 
             link += "_context.json?c=" + spent[0]
-            link += '">View ' + spent[0] + "</a>"
+            #link += '">View ' + spent[0] + "</a>"
             outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], link]
             print("\t".join(outline),file=outf)
 
