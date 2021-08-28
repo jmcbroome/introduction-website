@@ -1,6 +1,0 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
-node_54023	ND	19	2020-Mar-13	2020-Mar-28	20C,B.1.371	CA	0.0739396	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_ND-NDDH-0005_2020|MW471386.1|20-03-16_context.json?c=cluster
-node_19561	ND	3	2021-Jan-26	2021-Jan-26	20G,B.1.2	DE,NC	0.111111,0.272727	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_ND-CDC-2-3847025_2021|MW708916.1|21-01-26_context.json?c=cluster
-node_12689	ND	2	2021-Jan-25	2021-Jan-25	B.1.577,20C	MS	0.368421	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_ND-CDC-2-3847010_2021|MW708906.1|21-01-25_context.json?c=cluster
-node_14386	ND	2	2021-Jan-05	2021-Jan-05	20G,B.1.2	KS,NH,FL	0.0655738,0.0886076,0.141631	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_ND-NDDH-0062_2021|MW524066.1|21-01-05_context.json?c=cluster
-node_19024	ND	2	2021-Feb-01	2021-Feb-01	20G,B.1.2	indeterminate	0	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_ND-CDC-2-4011891_2021|MW792787.1|21-02-01_context.json?c=cluster

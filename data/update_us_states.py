@@ -20,7 +20,7 @@ def update_us_states():
     invc = {}
     svc = {}
     otvc = {}
-    ovc = {}
+    ovc = {k:{} for k in conversion.keys()}
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split("\t")
@@ -59,7 +59,7 @@ def update_us_states():
                 continue
             data = ast.literal_eval(entry.strip().strip(","))
             data["properties"]["intros"] = {}
-            data["properties"]["intros"]["basecount"] = invc[data["properties"]["name"]] #/ svc[data["properties"]["name"]]
+            data["properties"]["intros"]["basecount"] = invc.get(data["properties"]["name"],0) #/ svc[data["properties"]["name"]]
             svd["features"].append(data)
             sids[data["properties"]["name"]] = data["id"]
     #update the data intros list with specific state values
@@ -83,4 +83,4 @@ def update_us_states():
         for propd in svd['features']:
             print(str(propd) + ",",file=outf)
         print("]};",file=outf)
-update_us_states()
+#update_us_states()

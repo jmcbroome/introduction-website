@@ -28,8 +28,8 @@ def generate_display_tables():
             if len(filelines[reg]) < 5:
                 #many assumptions that make this faulty if we ever change tree handling.
                 #oh well.
-                if "node" in spent[0]:
-                    filelines[reg].append(entry.strip())
+                #if "node" in spent[0]:
+                filelines[reg].append(entry.strip())
             #now, check to see if this scores in the top five overall.
             if len(default_lines) < 5:
                 default_lines[float(spent[4])] = entry.strip()
@@ -78,4 +78,4 @@ def generate_display_tables():
             link += "_context.json?c=cluster"
             outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], link]
             print("\t".join(outline), file = outf)
-generate_display_tables()
+#generate_display_tables()

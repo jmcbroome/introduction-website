@@ -1,6 +1,0 @@
-Cluster ID	Region	Sample Count	Earliest Date	Latest Date	Clade/Lineage	Inferred Origins	Inferred Origin Confidences	Link to View
-node_87529	DE	3	2020-Oct-20	2020-Oct-21	B.1.609,20A	indeterminate	0	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_DE-CDC-2-3693593_2020|MW406489.1|20-10-20_context.json?c=cluster
-node_140104	DE	2	2021-Jan-21	2021-Jan-21	B.1.1.434,20B	OR,PA	0.16,0.176471	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_DE-CDC-2-3845330_2021|MW708955.1|21-01-21_context.json?c=cluster
-node_15949	DE	2	2021-Jan-25	2021-Jan-25	20G,B.1.2	MD	0.2	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_DE-CDC-2-3845240_2021|MW708980.1|21-01-25_context.json?c=cluster
-node_26627	DE	2	2021-Feb-09	2021-Feb-09	20G,B.1.2	FL,NV,CO	0.0775194,0.0886076,0.172414	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_DE-CDC-LC0014689_2021|MW704634.1|21-02-09_context.json?c=cluster
-node_49194	DE	2	2021-Jan-25	2021-Jan-29	B.1.311,20C	WA	0.454545	https://nextstrain.org/fetch/raw.githubusercontent.com/jmcbroome/introduction-website/main/data/display_json/USA_DE-CDC-2-3845415_2021|MW708982.1|21-01-25_context.json?c=cluster
