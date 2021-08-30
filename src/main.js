@@ -1,6 +1,6 @@
 var map = L.map('mapid', {'tap':false}).setView([37.8, -96], 4);
 var global_state = "default";
-var host = "raw.githubusercontent.com/jmcbroome/introduction-website/main/"
+// var host = "raw.githubusercontent.com/jmcbroome/introduction-website/main/"
 
 
 // Map values from geoJSON to a color 
@@ -66,7 +66,7 @@ info.update = function (props) {
 function changeHistogram() {
     //change the histogram currently being displayed
     //to the one based on the target name
-    document.getElementById("histogram").src = host + "data/display_histograms/" + global_state + "_csizes.png";
+    document.getElementById("histogram").src = "data/display_histograms/" + global_state + "_csizes.png";
 }
 
 function highlightFeature(e) {
