@@ -9,13 +9,15 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>       
+<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="lib/leafletjs/leaflet.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 </style>
     <body>
-        <link rel="stylesheet" href="lib/leafletjs/leaflet.css">
         <h1> GeograPhyl </h1>
         <p>This website uses heuristics to track the movement of the SARS-CoV-2 novel coronavirus
             through the United States of America by drawing on publicly available tagged
@@ -38,7 +40,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             the virus tends to cross interstate borders by land. Some regions have odd associations due to poor 
             sequencing and the amplification of weak signals by our scaling process.
         </p>
-        <link rel="stylesheet" href="css/custom.css">
         <div id="table-container"></div>
         <script src="lib/leafletjs/leaflet.js"></script>
         <script src="data/us-states.js"></script>
@@ -49,7 +50,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script src="src/csv_to_html_table.js"></script> 
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>       
         <script>
             CsvToHtmlTable.init({
               csv_path: 'data/display_tables/default_clusters.tsv', 
