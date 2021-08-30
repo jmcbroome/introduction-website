@@ -73,6 +73,7 @@ def update_us_states():
                 oid = sids[origin]
             else:
                 oid = sids[iid]
+            ftd["properties"]["intros"]["raw" + oid] = count
             if count > 5:
                 ftd["properties"]["intros"][oid] = math.log10(count * sumin / invc[iid] / otvc[origin])
             else:

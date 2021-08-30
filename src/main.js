@@ -64,7 +64,7 @@ info.update = function (props) {
     if (global_state == "default") {
         this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
     } else {
-        this._div.innerHTML = '<h4># Introductions to ' + global_state + ': ' + (props ? '<b>' + props.name + '</b><br />' + props.intros[global_state_id] : 'Hover over a state');
+        this._div.innerHTML = '<h4># Introductions to ' + global_state + 'from ' + (props ? '<b>' + props.name + '</b><br />' + props.intros["raw" + global_state_id] : 'Hover over a state');
     }
 };
 
