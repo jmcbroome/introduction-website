@@ -55,10 +55,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
               element: 'table-container', 
               allow_download: false,
               csv_options: {separator: '\t', delimiter: '"'},
-              datatables_options: {"paging": false, "searching": false, 
-                columnDefs: [{
-                    targets:-1,
-                    render:
+              datatables_options: {"paging": true, "searching": true, 
+                "columnDefs": [{
+                    "targets":-1,
+                    "render":
                     function (data,type,row,meta) {
                         return '<a href="' + data + '">View Cluster</a>'
                     }

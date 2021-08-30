@@ -115,7 +115,7 @@ function loadStateTable(e) {
         element: 'table-container', 
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
-        datatables_options: {"paging": false, "searching": false, 
+        datatables_options: {"paging": true, "searching": true, 
         "columnDefs": [{
             "targets":-1,
             "render":
