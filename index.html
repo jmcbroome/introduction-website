@@ -16,7 +16,11 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
-#histogram {float:right}
+#histogram {
+    float:right;
+    width: 400px;
+    height: 400px;
+}
 </style>
     <body>
         <h1> GeograPhyl </h1>
@@ -24,14 +28,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             through the United States of America by drawing on publicly available tagged
             viral genetic sequences and phylogenetic tree constructed by <a href = "https://usher-wiki.readthedocs.io/en/latest/">UShER.</a>
         </p>
-        <div id="mapid"></div>
-        <style>
-            #mapid {
-                height: 400px;
-                width: 800px;
-            }
-        </style>
-        <img src="data/display_histograms/default_csizes.png" id="histogram">
+        <div id="display">
+            <div id="mapid"></div>
+            <style>
+                #mapid {
+                    height: 400px;
+                    width: 800px;
+                    float: left;
+                }
+            </style>
+            <img src="data/display_histograms/default_csizes.png" id="histogram">    
+        </div>
         <p>The above heatmap by default displays the count of inferred unique families of the virus in each state,
             identified by counting clusters of viral sequences from an area that are closely related and appear 
             to share a single common ancestor that entered the region from outside. 
