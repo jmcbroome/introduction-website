@@ -66,7 +66,7 @@ info.update = function (props) {
 function changeHistogram() {
     //change the histogram currently being displayed
     //to the one based on the target name
-    document.getElementById("histogram").src = "../data/display_histograms/" + global_state + "_csizes.png";
+    document.getElementById("histogram").src = "/data/display_histograms/" + global_state + "_csizes.png";
 }
 
 function highlightFeature(e) {
