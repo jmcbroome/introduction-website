@@ -56,6 +56,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             </p>
         </div>
         <div id="table-container"></div>
+        <div id="submissionUCSC" style="visibility: hidden">
+            <form id = "submitter" action='https://genome.ucsc.edu/cgi-bin/hgPhyloPlace' method=POST>
+                <input name='db' value='wuhCor1'>
+                <input name='phyloPlaceTree' value='hgPhyloPlaceData/wuhCor1/public.plusGisaid.latest.masked.pb'>
+                <input name='subtreeSize'>
+                <input name='namesOrIds'>
+            </form>
+        </div>
         <script src="lib/leafletjs/leaflet.js"></script>
         <script src="data/us-states.js"></script>
         <script src="src/main.js"></script>
@@ -76,7 +84,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                     "targets":-1,
                     "render":
                     function (data,type,row,meta) {
-                        return '<a href="' + data + '">View Cluster</a>'
+                        return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
+                        // return '<a href="' + data + '">View Cluster</a>'
                     }
                 }],
                 }

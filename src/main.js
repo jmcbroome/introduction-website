@@ -1,5 +1,6 @@
 var map = L.map('mapid', {'tap':false}).setView([37.8, -96], 4);
 var global_state = "default";
+var global_state_id = "00";
 // var host = "raw.githubusercontent.com/jmcbroome/introduction-website/main/"
 
 
@@ -60,7 +61,11 @@ info.update = function (props) {
     // this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
     //     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
     //     : 'Hover over a state');
-    this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
+    if (global_state == "default") {
+        this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
+    } else {
+        this._div.innerHTML = '<h4># Introductions to ' + global_state + ': ' + (props ? '<b>' + props.name + '</b><br />' + props.intros[global_state_id] : 'Hover over a state');
+    }
 };
 
 function changeHistogram() {
@@ -97,6 +102,14 @@ function resetHighlight(e) {
     info.update();
 }
 
+function submitExternal(samplestring) {
+    var scount = samplestring.split(",").length;
+    var subm = document.getElementById("submitter");
+    subm.setAttribute("subtreeSize",scount*2);
+    subm.setAttribute("namesOrIds",samplestring.replace(",","\n"))
+    subm.submit();
+}
+
 function resetView(e) {
     geojson.eachLayer(function (layer) {
         geojson.resetStyle(layer);
@@ -111,7 +124,8 @@ function resetView(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
-                    return '<a href="' + data + '">View Cluster</a>'
+                    // return '<a href="' + data + '">View Cluster</a>'
+                    return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
         }],
         }    });
@@ -129,7 +143,8 @@ function loadStateTable(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
-                    return '<a href="' + data + '">View Cluster</a>'
+                    // return '<a href="' + data + '">View Cluster</a>'
+                    return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
         }],
         }    });
@@ -145,10 +160,12 @@ function changeView(e) {
     if (e.target.options.fillColor == "#1a0080") {
         resetView(e);
         global_state = "default";
+        global_state_id = "00";
         changeHistogram();
     } else {
         loadStateTable(e);
         global_state = e.target.feature.properties.name;
+        global_state_id = e.target.feature.id;
         changeHistogram();
         clicklayer.setStyle({fillColor: "#1a0080"});
         geojson.eachLayer(function (layer, e = clicklayer) {

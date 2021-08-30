@@ -37,4 +37,4 @@ def make_plots():
         ax.set_yticklabels([str(int(10**y)) for y in yticks])
         plt.savefig("display_histograms/" + conversion.get(state,state) + "_csizes.png")
         plt.clf()
-make_plots()
+#make_plots()

@@ -1,6 +1,7 @@
 import argparse
 from update_us_states import update_us_states
 from generate_display_tables import generate_display_tables
+from generate_histograms import make_plots
 from datetime import date, timedelta
 import subprocess
 
@@ -36,6 +37,7 @@ with open("samplenames.txt") as inf:
                     print(entry.strip(), state, file = outf)
 print("Calling introduce.")
 # subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -L \"" + str(date.today()-timedelta(days=30)) + "\" -u hardcoded_clusters.tsv -o full_output.tsv -T 4", shell=True)
+#subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -l \"" + str(date.today()-timedelta(days=14)) + "\" -u hardcoded_clusters.tsv -o full_output.tsv -T 4", shell=True)
 subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -u hardcoded_clusters.tsv -o full_output.tsv -T 4", shell=True)
 print("Updating map display data.")
 update_us_states()
@@ -44,4 +46,6 @@ generate_display_tables()
 print("Extracting JSON views.")
 subprocess.check_call("matUtils extract -i " + pbf + " -K extraction_targets.txt:50 -M cluster_labels.tsv", shell=True)
 subprocess.check_call("mv *context.json display_json/",shell=True)
+print("Generating histograms.")
+make_plots()
 print("Process completed; check website for results.")
