@@ -1,4 +1,5 @@
 var map = L.map('mapid', {'tap':false}).setView([37.8, -96], 4);
+var global_state = "default";
 
 // Map values from geoJSON to a color 
 function getColorBase(d) {
@@ -59,6 +60,12 @@ info.update = function (props) {
     //     : 'Hover over a state');
     this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
 };
+
+function changeHistogram() {
+    //change the histogram currently being displayed
+    //to the one based on the target name
+    document.getElementById("histogram").src = "data/display_histograms/" + global_state + "_csizes.png";
+}
 
 function highlightFeature(e) {
     var layer = e.target;
@@ -135,8 +142,12 @@ function changeView(e) {
     var clicklayer = e.target;
     if (e.target.options.fillColor == "#1a0080") {
         resetView(e);
+        global_state = "default";
+        changeHistogram();
     } else {
         loadStateTable(e);
+        global_state = e.target.feature.properties.name;
+        changeHistogram();
         clicklayer.setStyle({fillColor: "#1a0080"});
         geojson.eachLayer(function (layer, e = clicklayer) {
             if (e.feature.id != layer.feature.id) {
