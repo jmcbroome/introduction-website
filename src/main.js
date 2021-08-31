@@ -64,7 +64,7 @@ info.update = function (props) {
     if (global_state == "default") {
         this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
     } else {
-        this._div.innerHTML = '<h4># Introductions to ' + global_state + 'from ' + (props ? '<b>' + props.name + '</b><br />' + props.intros["raw" + global_state_id] : 'Hover over a state');
+        this._div.innerHTML = '<h4># Introductions to ' + global_state + ' from ' + (props ? '<b>' + props.name + '</b><br />' + props.intros["raw" + global_state_id] : 'Hover over a state');
     }
 };
 
@@ -107,6 +107,7 @@ function submitExternal(samplestring) {
     var subm = document.getElementById("submitter");
     subm.setAttribute("subtreeSize",scount*2);
     subm.setAttribute("namesOrIds",samplestring.replace(",","\n"))
+    console.log(subm);
     subm.submit();
 }
 
