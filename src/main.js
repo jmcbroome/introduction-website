@@ -106,7 +106,7 @@ function submitExternal(samplestring) {
     var scount = samplestring.split(",").length;
     document.getElementById("stsinput").setAttribute("value",scount*2);
     // document.getElementById("nidinput").setAttribute("value",samplestring.split(",").join("\n"));
-    document.getElementById("nidinput").innerText = encodeURI(samplestring.split(",").join("\r\n"));    
+    document.getElementById("nidinput").innerText = samplestring.split(",").join("\r\n");    
     console.log(document.getElementById("submitter"));
     document.getElementById("submitter").submit();
 }
