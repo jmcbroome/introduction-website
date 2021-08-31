@@ -104,11 +104,11 @@ function resetHighlight(e) {
 
 function submitExternal(samplestring) {
     var scount = samplestring.split(",").length;
-    var subm = document.getElementById("submitter");
-    subm.setAttribute("subtreeSize",scount*2);
-    subm.setAttribute("namesOrIds",samplestring.replace(",","\n"))
-    console.log(subm);
-    subm.submit();
+    document.getElementById("stsinput").setAttribute("value",scount*2);
+    // document.getElementById("nidinput").setAttribute("value",samplestring.split(",").join("\n"));
+    document.getElementById("nidinput").innerText = samplestring.split(",").join("\n");    
+    console.log(document.getElementById("submitter"));
+    document.getElementById("submitter").submit();
 }
 
 function resetView(e) {
@@ -120,7 +120,7 @@ function resetView(e) {
         element: 'table-container', 
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
-        datatables_options: {"paging": true, "searching": true, 
+        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]],
         "columnDefs": [{
             "targets":-1,
             "render":
@@ -139,7 +139,7 @@ function loadStateTable(e) {
         element: 'table-container', 
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '"'},
-        datatables_options: {"paging": true, "searching": true, 
+        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]],
         "columnDefs": [{
             "targets":-1,
             "render":

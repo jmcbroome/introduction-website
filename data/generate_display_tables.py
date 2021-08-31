@@ -45,7 +45,7 @@ def generate_display_tables():
             #     default_lines[float(spent[4])] = entry.strip()
             #     assert len(default_lines) == 5
 
-    header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences\tLink to View"
+    header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
     sout = open("extraction_targets.txt","w+")
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
@@ -70,7 +70,7 @@ def generate_display_tables():
                 # link += spent[-1].split(',')[0].replace("/","_") 
                 # link += "_context.json?c=cluster"
                 #link += '">View ' + spent[0] + "</a>"
-                outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[-1]]
+                outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[4], spent[-1]]
                 print("\t".join(outline),file=outf)
 
     sout.close()
@@ -80,9 +80,9 @@ def generate_display_tables():
         print(header,file=outf)
         for k in sorted_default_keys:
             spent = default_lines[k].split("\t")
-            link = "https://nextstrain.org/fetch/" + host + "data/display_json/"
-            link += spent[-1].split(',')[0].replace("/","_") 
-            link += "_context.json?c=cluster"
-            outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], link]
+            # link = "https://nextstrain.org/fetch/" + host + "data/display_json/"
+            # link += spent[-1].split(',')[0].replace("/","_") 
+            # link += "_context.json?c=cluster"
+            outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[4], spent[-1]]
             print("\t".join(outline), file = outf)
-generate_display_tables()
+#generate_display_tables()
