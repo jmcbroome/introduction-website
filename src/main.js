@@ -118,7 +118,7 @@ function resetView(e) {
 }
 
 function loadStateTable(e) {
-    console.log("Attempting to load table " + e.target.features.properties.name);
+    console.log("Attempting to load table " + e.target.feature.properties.name);
     let path = "data/display_tables/" + e.target.feature.properties.name + "_topclusters.tsv";
     CsvToHtmlTable.init({
         csv_path: path, 
