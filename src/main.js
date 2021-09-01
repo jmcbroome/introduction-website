@@ -110,6 +110,7 @@ function resetView(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
+                    console.log("Attempting to encode link string");
                     return '<a href="' + encodeURI(data) + '">View Cluster</a>'
                     // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
@@ -130,6 +131,7 @@ function loadStateTable(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
+                    console.log("Attempting to encode link string");
                     return '<a href="' + encodeURI(data) + '">View Cluster</a>'
                     // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
