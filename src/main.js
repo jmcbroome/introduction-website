@@ -68,12 +68,6 @@ info.update = function (props) {
     }
 };
 
-function changeHistogram() {
-    //change the histogram currently being displayed
-    //to the one based on the target name
-    document.getElementById("histogram").src = "./data/display_histograms/" + global_state + "_csizes.png";
-}
-
 function highlightFeature(e) {
     var layer = e.target;
 
@@ -102,15 +96,6 @@ function resetHighlight(e) {
     info.update();
 }
 
-function submitExternal(samplestring) {
-    var scount = samplestring.split(",").length;
-    document.getElementById("stsinput").setAttribute("value",scount*2);
-    // document.getElementById("nidinput").setAttribute("value",samplestring.split(",").join("\n"));
-    document.getElementById("nidinput").innerText = samplestring.split(",").join("\r\n");    
-    console.log(document.getElementById("submitter"));
-    document.getElementById("submitter").submit();
-}
-
 function resetView(e) {
     geojson.eachLayer(function (layer) {
         geojson.resetStyle(layer);
@@ -125,8 +110,8 @@ function resetView(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
-                    // return '<a href="' + data + '">View Cluster</a>'
-                    return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
+                    return '<a href="' + data + '">View Cluster</a>'
+                    // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
         }],
         }    });
@@ -144,8 +129,8 @@ function loadStateTable(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
-                    // return '<a href="' + data + '">View Cluster</a>'
-                    return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
+                    return '<a href="' + data + '">View Cluster</a>'
+                    // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
         }],
         }    });
@@ -162,12 +147,10 @@ function changeView(e) {
         resetView(e);
         global_state = "default";
         global_state_id = "00";
-        changeHistogram();
     } else {
         loadStateTable(e);
         global_state = e.target.feature.properties.name;
         global_state_id = e.target.feature.id;
-        changeHistogram();
         clicklayer.setStyle({fillColor: "#1a0080"});
         geojson.eachLayer(function (layer, e = clicklayer) {
             if (e.feature.id != layer.feature.id) {
@@ -181,7 +164,6 @@ function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        //click: zoomToFeature
         click: changeView
     });
 }

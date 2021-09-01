@@ -16,12 +16,6 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
-#submitter {white-space: pre-wrap;}
-#histogram {
-    float:right;
-    width: 600px;
-    height: 400px;
-}
 #maintext {
     overflow:hidden;
     clear:left;
@@ -38,11 +32,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             <style>
                 #mapid {
                     height: 400px;
-                    width: 800px;
-                    float: left;
                 }
             </style>
-            <img src="data/display_histograms/default_csizes.png" id="histogram">    
         </div>
         <div id="maintext">
             <p>The above heatmap by default displays the count of inferred unique families of the virus in each state,
@@ -57,14 +48,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             </p>
         </div>
         <div id="table-container"></div>
-        <div id="submissionUCSC" style="visibility: hidden">
-            <form id = "submitter" action='https://genome.ucsc.edu/cgi-bin/hgPhyloPlace' method="POST" >
-                <input name='db' value='wuhCor1'>
-                <input name='phyloPlaceTree' value='hgPhyloPlaceData/wuhCor1/public.plusGisaid.latest.masked.pb'>
-                <input name='subtreeSize' id="stsinput" value="0">
-                <textarea name='namesOrIds' id="nidinput"></textarea>
-            </form>
-        </div>
         <script src="lib/leafletjs/leaflet.js"></script>
         <script src="data/us-states.js"></script>
         <script src="src/main.js"></script>
@@ -85,8 +68,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                     "targets":-1,
                     "render":
                     function (data,type,row,meta) {
-                        return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
-                        // return '<a href="' + data + '">View Cluster</a>'
+                        // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
+                        return '<a href="' + data + '">View Cluster</a>'
                     }
                 }],
                 }
