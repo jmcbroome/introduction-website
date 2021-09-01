@@ -104,18 +104,15 @@ function resetView(e) {
         csv_path: 'data/display_tables/default_clusters.tsv', 
         element: 'table-container', 
         allow_download: false,
-        csv_options: {separator: '\t', delimiter: '"'},
-        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]],
-        "columnDefs": [{
-            "targets":-1,
-            "render":
-                function (data,type,row,meta) {
-                    console.log("Attempting to encode link string");
-                    return '<a href="' + encodeURI(data) + '">View Cluster</a>'
-                    // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
-                }
-        }],
-        }    });
+        csv_options: {separator: '\t', delimiter: '\t'},
+        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
+        custom_formatting: [[9,
+          function (data,type,row,meta) {
+                      console.log("Attempting to encode link string");
+                      return '<a href="' + encodeURI(data) + '">View Cluster</a>';
+              }
+          ]]
+      });
 }
 
 function loadStateTable(e) {
@@ -125,18 +122,15 @@ function loadStateTable(e) {
         csv_path: path, 
         element: 'table-container', 
         allow_download: false,
-        csv_options: {separator: '\t', delimiter: '"'},
-        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]],
-        "columnDefs": [{
-            "targets":-1,
-            "render":
-                function (data,type,row,meta) {
-                    console.log("Attempting to encode link string");
-                    return '<a href="' + encodeURI(data) + '">View Cluster</a>'
-                    // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
-                }
-        }],
-        }    });
+        csv_options: {separator: '\t', delimiter: '\t'},
+        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
+        custom_formatting: [[9,
+          function (data,type,row,meta) {
+                      console.log("Attempting to encode link string");
+                      return '<a href="' + encodeURI(data) + '">View Cluster</a>';
+              }
+          ]]
+      });
 }
 
 function zoomToFeature(e) {
