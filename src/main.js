@@ -110,7 +110,7 @@ function resetView(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
-                    return '<a href="' + data + '">View Cluster</a>'
+                    return '<a href="' + encodeURI(data) + '">View Cluster</a>'
                     // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
         }],
@@ -130,7 +130,7 @@ function loadStateTable(e) {
             "targets":-1,
             "render":
                 function (data,type,row,meta) {
-                    return '<a href="' + data + '">View Cluster</a>'
+                    return '<a href="' + encodeURi(data) + '">View Cluster</a>'
                     // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
                 }
         }],
