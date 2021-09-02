@@ -9,7 +9,7 @@ def generate_display_tables():
     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
     #this will need to be edited on migrating to a proper host service.
-    host = "raw.githubusercontent.com/jmcbroome/introduction-website/main/"
+    host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/"
 
     default_lines = {}
     with open("hardcoded_clusters.tsv") as inf:
@@ -65,7 +65,7 @@ def generate_display_tables():
                 link += '&search=[{"id":0.123,"category":"country","value":"'
                 link += "USA_" + spent[0]
                 link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
-                link += '&colourBy={"variable":"lineage","gene":"S","colourLines":false,"residue":"681"}'
+                link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
                 outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[4], link]
                 print("\t".join(outline),file=outf)
 
@@ -79,7 +79,7 @@ def generate_display_tables():
             link += '&search=[{"id":0.123,"category":"country","value":"'
             link += "USA_" + spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
-            link += '&colourBy={"variable":"lineage","gene":"S","colourLines":false,"residue":"681"}'
+            link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
             outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
 #generate_display_tables()
