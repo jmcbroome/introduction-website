@@ -8,6 +8,10 @@ def generate_display_tables():
     "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
+    def fix_month(datestr):
+        monthswap = {"Jan":"1","Feb":"2","Mar":"3","Apr":"4","May":"5","Jun":"6","Jul":"7","Aug":"8","Sep":"9","Oct":"10","Nov":"11","Dec":"12"}
+        splitr = datestr.split("-")
+        return splitr[0] + "-" + monthswap.get(splitr[1],splitr[1]) + "-" + splitr[2]
     #this will need to be edited on migrating to a proper host service.
     host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/"
 
@@ -66,7 +70,8 @@ def generate_display_tables():
                 link += spent[0]
                 link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
                 link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
-                outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[4], link]
+                #additionally process the date strings
+                outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
                 print("\t".join(outline),file=outf)
 
     mout.close()
@@ -80,6 +85,6 @@ def generate_display_tables():
             link += spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
             link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
-            outline = [spent[0], spent[9], spent[1], spent[2], spent[3], spent[12], spent[10], spent[11], spent[4], link]
+            outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
-#generate_display_tables()
+generate_display_tables()
