@@ -108,8 +108,7 @@ function resetView(e) {
         datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
         custom_formatting: [[9,
           function (data,type,row,meta) {
-                      console.log("Attempting to encode link string");
-                      return '<a href="' + encodeURI(data) + '">View Cluster</a>';
+                return '<a href="' + encodeURI(data) + '" target="_blank">View Cluster</a>';
               }
           ]]
       });
@@ -126,9 +125,8 @@ function loadStateTable(e) {
         datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
         custom_formatting: [[9,
           function (data,type,row,meta) {
-                      console.log("Attempting to encode link string");
-                      return '<a href="' + encodeURI(data) + '">View Cluster</a>';
-              }
+                return '<a href="' + encodeURI(data) + '" target="_blank">View Cluster</a>';
+            }
           ]]
       });
 }

@@ -62,9 +62,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
               datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
               custom_formatting: [[9,
                 function (data,type,row,meta) {
-                            // return '<button type="button" onclick=submitExternal(\"' + data + '\")>View at UCSC</button>';
-                            console.log("Attempting to encode link string");
-                            return '<a href="' + encodeURI(data) + '">View Cluster</a>';
+                    return '<a href="' + encodeURI(data) + '" target="_blank">View Cluster</a>';
                     }
                 ]]
             });
