@@ -21,22 +21,22 @@ parser.add_argument("-a","--annotation",help="Path to a gtf annotation matching 
 args = parser.parse_args()
 pbf = args.input
 mf = args.metadata
-# print("Identifying state samples.")
-# subprocess.check_call("matUtils extract -i " + pbf + " -u samplenames.txt",shell=True)
-# with open("samplenames.txt") as inf:
-#     with open("sample_regions.tsv","w+") as outf:
-#         for entry in inf:
-#             country = entry.split("/")[0]
-#             if country == "USA":
-#                 state = entry.split("/")[1].split("-")[0]
-#                 if state in conversion:
-#                     print(entry.strip(), state, file = outf)
-# print("Calling introduce.")
-# subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -u hardcoded_clusters.tsv -T 4", shell=True)
-# print("Updating map display data.")
-# update_us_states()
-# print("Generating top cluster tables.")
-# generate_display_tables()
+print("Identifying state samples.")
+subprocess.check_call("matUtils extract -i " + pbf + " -u samplenames.txt",shell=True)
+with open("samplenames.txt") as inf:
+    with open("sample_regions.tsv","w+") as outf:
+        for entry in inf:
+            country = entry.split("/")[0]
+            if country == "USA":
+                state = entry.split("/")[1].split("-")[0]
+                if state in conversion:
+                    print(entry.strip(), state, file = outf)
+print("Calling introduce.")
+subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -u hardcoded_clusters.tsv -T 4", shell=True)
+print("Updating map display data.")
+update_us_states()
+print("Generating top cluster tables.")
+generate_display_tables()
 print("Preparing taxodium view.")
 sd = {}
 with open("cluster_labels.tsv") as inf:
@@ -53,7 +53,7 @@ with open(mf) as inf:
         for entry in inf:
             spent = entry.strip().split("\t")                
             if spent[0] in sd:
-                spent[3] = "USA_" + sd[spent[0]]
+                spent[3] = sd[spent[0]]
             print("\t".join(spent),file=outf)
 print("Generating viewable pb.")
 subprocess.check_call("matUtils extract -i " + pbf + " -M clusterswapped.tsv --write-taxodium cview.pb --title Geographyl -g " + args.annotation + " -f " + args.reference,shell=True)
