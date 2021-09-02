@@ -9,7 +9,7 @@ def generate_display_tables():
     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
     def fix_month(datestr):
-        monthswap = {"Jan":"1","Feb":"2","Mar":"3","Apr":"4","May":"5","Jun":"6","Jul":"7","Aug":"8","Sep":"9","Oct":"10","Nov":"11","Dec":"12"}
+        monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
         splitr = datestr.split("-")
         return splitr[0] + "-" + monthswap.get(splitr[1],splitr[1]) + "-" + splitr[2]
     #this will need to be edited on migrating to a proper host service.
@@ -87,4 +87,4 @@ def generate_display_tables():
             link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
             outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
-generate_display_tables()
+#generate_display_tables()
