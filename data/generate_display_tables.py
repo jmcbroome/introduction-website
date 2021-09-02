@@ -41,7 +41,7 @@ def generate_display_tables():
             #now, check to see if this scores in the top five overall.
             if len(default_lines) < 100:
                 default_lines[float(spent[4])] = entry.strip()
-            elif float(spent[4]) > max(default_lines.keys()):
+            elif float(spent[4]) > min(default_lines.keys()):
                 default_lines.pop(min(default_lines.keys()))
                 default_lines[float(spent[4])] = entry.strip()
                 assert len(default_lines) == 100

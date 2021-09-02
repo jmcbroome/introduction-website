@@ -96,39 +96,59 @@ function resetHighlight(e) {
     info.update();
 }
 
+function loadTargetTable(target) {
+    CsvToHtmlTable.init({
+        csv_path: target, 
+        element: 'table-container', 
+        allow_download: false,
+        csv_options: {separator: '\t', delimiter: '\t'},
+        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
+        custom_formatting: [
+            [9, function (data,type,row,meta) {
+                return '<a href="' + encodeURI(data) + '" title="Click to View in Taxodium" target="_blank">View Cluster</a>';
+              }
+            ],[8, function (data,type,row,meta) {
+                return '<div title="Importance estimate based on cluster size and age.">' + data + "</div>"
+              }
+            ],[7, function (data,type,row,meta) {
+                return '<div title="Confidence metric for origin; 1 is maximal, 0 is minimum.">' + data + "</div>"
+              }
+            ],[6, function (data,type,row,meta) {
+                return '<div title="The origin region with the greatest weight. May not be true origin.">' + data + "</div>"
+              }
+            ],[5, function (data,type,row,meta) {
+                return '<div title="Pangolin lineage and nextstrain clade of the ancestral introduction.">' + data + "</div>"
+              }
+            ],[4, function (data,type,row,meta) {
+                return '<div title="Date of the latest sample from this cluster.">' + data + "</div>"
+              }
+            ],[3, function (data,type,row,meta) {
+                return '<div title="Date of the earliest sample from this cluster.">' + data + "</div>"
+              }
+            ],[2, function (data,type,row,meta) {
+                return '<div title="Number of samples in this cluster.">' + data + "</div>"
+              }
+            ],[1, function (data,type,row,meta) {
+                return '<div title="Region of this cluster.">' + data + "</div>"
+              }
+            ],[0, function (data,type,row,meta) {
+                return '<div title="The identifier of the internal node inferred to be the ancestral introduction. Can be used with the public protobuf and matUtils.">' + data + "</div>"
+              }
+            ]
+        ]
+      });
+}
+
 function resetView(e) {
     geojson.eachLayer(function (layer) {
         geojson.resetStyle(layer);
     });
-    CsvToHtmlTable.init({
-        csv_path: 'data/display_tables/default_clusters.tsv', 
-        element: 'table-container', 
-        allow_download: false,
-        csv_options: {separator: '\t', delimiter: '\t'},
-        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
-        custom_formatting: [[9,
-          function (data,type,row,meta) {
-                return '<a href="' + encodeURI(data) + '" target="_blank">View Cluster</a>';
-              }
-          ]]
-      });
+    loadTargetTable('data/display_tables/default_clusters.tsv');
 }
 
 function loadStateTable(e) {
-    console.log("Attempting to load table " + e.target.feature.properties.name);
     let path = "data/display_tables/" + e.target.feature.properties.name + "_topclusters.tsv";
-    CsvToHtmlTable.init({
-        csv_path: path, 
-        element: 'table-container', 
-        allow_download: false,
-        csv_options: {separator: '\t', delimiter: '\t'},
-        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
-        custom_formatting: [[9,
-          function (data,type,row,meta) {
-                return '<a href="' + encodeURI(data) + '" target="_blank">View Cluster</a>';
-            }
-          ]]
-      });
+    loadTargetTable(path);
 }
 
 function zoomToFeature(e) {

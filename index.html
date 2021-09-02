@@ -54,18 +54,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script src="src/csv_to_html_table.js"></script> 
         <script>
-           CsvToHtmlTable.init({
-              csv_path: 'data/display_tables/default_clusters.tsv', 
-              element: 'table-container', 
-              allow_download: false,
-              csv_options: {separator: '\t', delimiter: '\t'},
-              datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
-              custom_formatting: [[9,
-                function (data,type,row,meta) {
-                    return '<a href="' + encodeURI(data) + '" target="_blank">View Cluster</a>';
-                    }
-                ]]
-            });
+           loadTargetTable('data/display_tables/default_clusters.tsv');
         </script>
         <a href = "data/hardcoded_clusters.tsv", download = "sarscov2_clusters.tsv">Download full dataset.</a>
     </body>
