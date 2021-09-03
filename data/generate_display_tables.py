@@ -15,7 +15,8 @@ def generate_display_tables():
     #this will need to be edited on migrating to a proper host service.
     host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/"
 
-    default_lines = {}
+    default_growthvs = []
+    default_lines = []
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split("\t")
@@ -38,12 +39,16 @@ def generate_display_tables():
                 filelines[reg] = []
             if len(filelines[reg]) < 100:
                 filelines[reg].append(entry.strip())
-            #now, check to see if this scores in the top five overall.
+            #now, check to see if this scores in the top 100 overall. Significantly more complicated since we have to sort things out as we go here.
             if len(default_lines) < 100:
-                default_lines[float(spent[4])] = entry.strip()
-            elif float(spent[4]) > min(default_lines.keys()):
-                default_lines.pop(min(default_lines.keys()))
-                default_lines[float(spent[4])] = entry.strip()
+                default_growthvs.append(float(spent[4]))
+                default_lines.append(entry.strip())
+            elif float(spent[4]) > min(default_growthvs):
+                popind = default_growthvs.index(min(default_growthvs))
+                default_growthvs.pop(popind)
+                default_lines.pop(popind)
+                default_growthvs.append(float(spent[4]))
+                default_lines.append(entry.strip())
                 assert len(default_lines) == 100
 
     header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
@@ -75,11 +80,11 @@ def generate_display_tables():
                 print("\t".join(outline),file=outf)
 
     mout.close()
-    sorted_default_keys = sorted(list(default_lines.keys()),reverse=True)
+    sorted_defaults = sorted(list(zip(default_growthvs,default_lines)),key=lambda x:-x[0])
     with open("display_tables/default_clusters.tsv","w+") as outf:
         print(header,file=outf)
-        for k in sorted_default_keys:
-            spent = default_lines[k].split("\t")
+        for gv,dl in sorted_defaults:
+            spent = dl.split("\t")
             link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
             link += '&search=[{"id":0.123,"category":"country","value":"'
             link += spent[0]

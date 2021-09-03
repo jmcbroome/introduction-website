@@ -19,11 +19,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </style>
     <body>
         <h1> GeograPhyl </h1>
-        <p>This website uses heuristics to track the movement of the SARS-CoV-2 novel coronavirus
-            through the United States of America by drawing on publicly available tagged
-            viral genetic sequences and phylogenetic tree constructed by <a href = "https://usher-wiki.readthedocs.io/en/latest/">UShER.</a>
-        </p>
-        <div id="display">
+        <div id="display" title="This map displays the count of inferred unique families of the virus in each state by default. When a state is selected, it instead displays a scaled estimate of the count of viral introductions to the selected state from each other state.">
             <div id="mapid"></div>
             <style>
                 #mapid {
@@ -32,15 +28,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             </style>
         </div>
         <div id="maintext">
-            <p>The above heatmap by default displays the count of inferred unique families of the virus in each state,
-                identified by counting clusters of viral sequences from an area that are closely related and appear 
-                to share a single common ancestor that entered the region from outside. 
-            </p>
-            <p>By clicking on a single state of interest, the display changes to an estimate of genetic flow
-                of the virus from other states. This metric is scaled by the total clusters detected in both 
-                the state of interest and the putative origin. Generally it reflects close geographic association, suggesting
-                the virus tends to cross interstate borders by land. Some regions have odd associations due to poor 
-                sequencing and the amplification of weak signals by our scaling process.
+            <p>This site uses a <a title="Wiki page describing the heuristic calculation." target="_blank" href="https://usher-wiki.readthedocs.io/en/latest/matUtils.html#introduce">heuristic</a> 
+                applied to the <a title="Repository containing daily-updated comprehensive global phylogenetic trees for SARS-CoV-2" target="_blank" href="http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/">global public SARS-CoV-2 phylogenetic tree</a>
+                to identify groups of sequences from an area that seem to share a recent common ancestor from outside the region. These likely reflect cases of an infected traveler
+                entering a region with a new strain, followed by local spread. Please post an issue at <a title="The github repository for this site." href="https://github.com/jmcbroome/introduction-website" target="_blank">the github</a> or email me at jmcbroom@ucsc.edu if you have questions or feedback.
             </p>
         </div>
         <div id="table-container"></div>

@@ -108,13 +108,13 @@ function loadTargetTable(target) {
                 return '<a href="' + encodeURI(data) + '" title="Click to View in Taxodium" target="_blank">View Cluster</a>';
               }
             ],[8, function (data,type,row,meta) {
-                return '<div title="Importance estimate based on cluster size and age.">' + data + "</div>"
+                return '<div title="Importance estimate based on cluster size and age. Not directly comparable between regions with varying sequencing levels.">' + data + "</div>"
               }
             ],[7, function (data,type,row,meta) {
-                return '<div title="Confidence metric for origin; 1 is maximal, 0 is minimum.">' + data + "</div>"
+                return '<div title="Confidence metric for the origin; 1 is maximal, 0 is minimal.">' + data + "</div>"
               }
             ],[6, function (data,type,row,meta) {
-                return '<div title="The origin region with the greatest weight. May not be true origin.">' + data + "</div>"
+                return '<div title="The origin region with the greatest weight. May not be the true origin, especially if the corresponding confidence value is below 0.5.">' + data + "</div>"
               }
             ],[5, function (data,type,row,meta) {
                 return '<div title="Pangolin lineage and nextstrain clade of the ancestral introduction.">' + data + "</div>"
