@@ -32,7 +32,7 @@ with open("samplenames.txt") as inf:
                 if state in conversion:
                     print(entry.strip(), state, file = outf)
 print("Calling introduce.")
-subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -u hardcoded_clusters.tsv -T 4", shell=True)
+subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -u hardcoded_clusters.tsv -T 4 -X 3", shell=True)
 print("Updating map display data.")
 update_us_states()
 print("Generating top cluster tables.")
