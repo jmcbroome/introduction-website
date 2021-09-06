@@ -18,11 +18,14 @@ parser.add_argument("-i","--input",help="Path to the protobuf file to update the
 parser.add_argument("-m","--metadata",help="Path to a metadata file matching the targeted protobuf to update the website to display.")
 parser.add_argument("-f","--reference",help="Path to a reference fasta.")
 parser.add_argument("-a","--annotation",help="Path to a gtf annotation matching the reference.")
+parser.add_argument("-t","--threads",type=int,help="Number of threads to use.", default = 4)
+parser.add_argument("-X","--lookahead",type=int,help="Number to pass to parameter -X of introduce. Increase to merge nested clusters. Default 2", default = 2)
 args = parser.parse_args()
 pbf = args.input
 mf = args.metadata
 print("Identifying state samples.")
 subprocess.check_call("matUtils extract -i " + pbf + " -u samplenames.txt",shell=True)
+badsamples = open("unlabeled_samples.txt","w+")
 with open("samplenames.txt") as inf:
     with open("sample_regions.tsv","w+") as outf:
         for entry in inf:
@@ -31,8 +34,13 @@ with open("samplenames.txt") as inf:
                 state = entry.split("/")[1].split("-")[0]
                 if state in conversion:
                     print(entry.strip(), state, file = outf)
+                else:
+                    print(entry.strip(), file = badsamples)
+badsamples.close()
+print("Clearing out unparseable USA samples.")
+subprocess.check_call("matUtils extract -i " + pbf + " -s unlabeled_samples.txt -p -o clean.pb", shell = True)
 print("Calling introduce.")
-subprocess.check_call("matUtils introduce -i " + pbf + " -s sample_regions.tsv -u hardcoded_clusters.tsv -T 4 -X 3", shell=True)
+subprocess.check_call("matUtils introduce -i clean.pb -s sample_regions.tsv -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
 print("Updating map display data.")
 update_us_states()
 print("Generating top cluster tables.")
@@ -56,5 +64,5 @@ with open(mf) as inf:
                 spent[3] = sd[spent[0]]
             print("\t".join(spent),file=outf)
 print("Generating viewable pb.")
-subprocess.check_call("matUtils extract -i " + pbf + " -M clusterswapped.tsv --write-taxodium cview.pb --title Geographyl -g " + args.annotation + " -f " + args.reference,shell=True)
+subprocess.check_call("matUtils extract -i clean.pb -M clusterswapped.tsv --write-taxodium cview.pb --title Geographyl -g " + args.annotation + " -f " + args.reference,shell=True)
 print("Process completed; check website for results.")
