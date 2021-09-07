@@ -73,8 +73,9 @@ def generate_display_tables():
                 link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
                 link += '&search=[{"id":0.123,"category":"country","value":"'
                 link += spent[0]
-                link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
+                link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":"' + '\\n'.join(spent[-1].split(',')) + '"}]'
                 link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
+                link += "&zoomToSearch=0"
                 #additionally process the date strings
                 outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
                 print("\t".join(outline),file=outf)
@@ -88,8 +89,9 @@ def generate_display_tables():
             link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
             link += '&search=[{"id":0.123,"category":"country","value":"'
             link += spent[0]
-            link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
+            link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":"' + '\\n'.join(spent[-1].split(',')) + '"}]'
             link += '&colourBy={"variable":"none","gene":"S","colourLines":false,"residue":"681"}'
+            link += "&zoomToSearch=0"
             outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
 #generate_display_tables()
