@@ -1,5 +1,6 @@
 var map = L.map('mapid', {'tap':false}).setView([37.8, -96], 4);
 var global_state = "default";
+var global_time = "";
 var global_state_id = "00";
 // var host = "raw.githubusercontent.com/jmcbroome/introduction-website/main/"
 
@@ -29,7 +30,7 @@ function getColorIntro(d) {
 
 function style(feature) {
     return {
-        fillColor: getColorBase(feature.properties.intros.basecount),
+        fillColor: getColorBase(feature.properties.intros[global_time + "basecount"]),
         weight: 2,
         opacity: 1,
         color: 'white',
@@ -62,9 +63,9 @@ info.update = function (props) {
     //     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
     //     : 'Hover over a state');
     if (global_state == "default") {
-        this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros.basecount : 'Hover over a state');
+        this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros[global_time + "basecount"] : 'Hover over a state');
     } else {
-        this._div.innerHTML = '<h4># Introductions to ' + global_state + ' from ' + (props ? '<b>' + props.name + '</b><br />' + props.intros["raw" + global_state_id] : 'Hover over a state');
+        this._div.innerHTML = '<h4># Introductions to ' + global_state + ' from ' + (props ? '<b>' + props.name + '</b><br />' + props.intros[global_time + "raw" + global_state_id] : 'Hover over a state');
     }
 };
 
@@ -151,6 +152,26 @@ function loadStateTable(e) {
     loadTargetTable(path);
 }
 
+function changeMap(time) {
+    if (time == 0) {
+        //reset to default
+        global_time = "";
+    } else {
+        global_time = time + "_";
+    }
+    if (global_state != "default") {
+        geojson.eachLayer(function (layer) {
+            if (layer.feature.id == global_state_id) {
+                layer.setStyle({fillColor: "#1a0080"});
+            } else {
+                layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[global_time + global_state_id])});
+            }
+        });
+    } else {
+        resetView();
+    }
+}
+
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 }
@@ -169,7 +190,7 @@ function changeView(e) {
         clicklayer.setStyle({fillColor: "#1a0080"});
         geojson.eachLayer(function (layer, e = clicklayer) {
             if (e.feature.id != layer.feature.id) {
-                layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[e.feature.id])})
+                layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[global_time + e.feature.id])})
             }
         });
     }

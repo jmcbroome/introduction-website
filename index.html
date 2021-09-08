@@ -16,9 +16,39 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
+.dropdown {position: relative; display: inline-block;}
+.timel {display: block;}
+.dropdown-content {display: none; position: absolute; z-index: 1000; background-color:#f1f1f1; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)} 
+.show {display:block;}
 </style>
     <body>
         <h1> GeograPhyl </h1>
+        <script>
+            function showList() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+        <div class="dropdown" id="droploc">
+            <button onclick="showList()" class="dropbtn">Choose Map Display Time Period</button>
+            <div id="myDropdown" class="dropdown-content">
+                <button class="timel" onclick="changeMap(0)">Whole Pandemic</p>
+                <button class="timel" onclick="changeMap(12)">Last 12 Months</p>
+                <button class="timel" onclick="changeMap(6)">Last 6 Months</p>
+                <button class="timel" onclick="changeMap(3)">Last 3 Months</p>
+            </div>
+        </div>
         <div id="display" title="This map displays the count of inferred unique families of the virus in each state by default. When a state is selected, it instead displays a scaled estimate of the count of viral introductions to the selected state from each other state.">
             <div id="mapid"></div>
             <style>
