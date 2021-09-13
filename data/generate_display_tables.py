@@ -1,13 +1,5 @@
-def generate_display_tables():
+def generate_display_tables(conversion = {}):
     filelines = {}
-    conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
-    "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
-    "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
-    "MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana",
-    "NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina",
-    "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
-    "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
-    "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
     def fix_month(datestr):
         monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
         splitr = datestr.split("-")
@@ -51,30 +43,6 @@ def generate_display_tables():
                 default_lines.append(entry.strip())
                 assert len(default_lines) == 100
 
-    # def split_clade_linage(cl):
-    #     #split the clade/lineage field into distinct clades and lineages
-    #     #based on whether it has a "." in it, since pangolin lineage always has a "." and nextstrain clade never does
-    #     cl = spent[12].split(",")
-    #     clade = "none"
-    #     lineage = "none"
-    #     if len(cl) == 2:
-    #         if "." in cl[0]:
-    #             clade = cl[1]
-    #             lineage = cl[0]
-    #         else:
-    #             clade = cl[0]
-    #             lineage = cl[1]
-    #     elif len(cl) == 1:
-    #         if len(cl[0]) == 0:
-    #             clade = "none"
-    #             lineage = "none"
-    #         elif "." in cl[0]:
-    #             lineage = cl[0]
-    #             clade = "none"
-    #         else:
-    #             clade = cl[0]
-    #             lineage = "none"
-    #     return clade, lineage
     header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
@@ -90,7 +58,6 @@ def generate_display_tables():
                 samples = spent[-1].split(",")
                 for s in samples:
                     print(s + "\t" + spent[0],file=mout)
-                # clade, lineage = split_clade_lineage(spent[12])
                 #generate a link to exist in the last column
                 #based on the global "host" variable.
                 #and including all html syntax.
@@ -110,7 +77,6 @@ def generate_display_tables():
         print(header,file=outf)
         for gv,dl in sorted_defaults:
             spent = dl.split("\t")
-            # clade, lineage = split_clade_lineage(spent[12])
             link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
             link += '&search=[{"id":0.123,"category":"country","value":"'
             link += spent[0]
@@ -119,4 +85,12 @@ def generate_display_tables():
             link += "&zoomToSearch=0"
             outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
-generate_display_tables()
+stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
+    "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
+    "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
+    "MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana",
+    "NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina",
+    "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
+    "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
+    "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
+#generate_display_tables(stateconv)

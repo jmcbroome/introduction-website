@@ -1,17 +1,26 @@
 import argparse
-from update_us_states import update_us_states
+from update_js import update_js
 from generate_display_tables import generate_display_tables
 from datetime import date, timedelta
 import subprocess
 
-conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
-    "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
-    "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
-    "MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana",
-    "NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina",
-    "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
-    "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
-    "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
+# conversion = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
+#     "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
+#     "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
+#     "MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana",
+#     "NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina",
+#     "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
+#     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
+#     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
+
+def read_lexicon(lfile):
+    conversion = {}
+    with open(lfile) as inf:
+        for entry in inf:
+            spent = entry.strip().split(",")
+            for alternative in spent:
+                conversion[alternative] = spent[0]
+    return conversion
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input",help="Path to the protobuf file to update the website to display. Must include samples from within the last month.")
@@ -19,10 +28,16 @@ parser.add_argument("-m","--metadata",help="Path to a metadata file matching the
 parser.add_argument("-f","--reference",help="Path to a reference fasta.")
 parser.add_argument("-a","--annotation",help="Path to a gtf annotation matching the reference.")
 parser.add_argument("-t","--threads",type=int,help="Number of threads to use.", default = 4)
+parser.add_argument("-l","--lexicon",help="Optionally, link to a text file containing all names for the same region, one region per row, tab separated.", default = "")
 parser.add_argument("-X","--lookahead",type=int,help="Number to pass to parameter -X of introduce. Increase to merge nested clusters. Default 2", default = 2)
 args = parser.parse_args()
 pbf = args.input
 mf = args.metadata
+if args.lexicon != "":
+    conversion = read_lexicon(args.lexicon)
+else:
+    conversion = {}
+print(conversion)
 print("Identifying state samples.")
 subprocess.check_call("matUtils extract -i " + pbf + " -u samplenames.txt",shell=True)
 badsamples = open("unlabeled_samples.txt","w+")
@@ -42,9 +57,9 @@ subprocess.check_call("matUtils extract -i " + pbf + " -s unlabeled_samples.txt 
 print("Calling introduce.")
 subprocess.check_call("matUtils introduce -i clean.pb -s sample_regions.tsv -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
 print("Updating map display data.")
-update_us_states()
+update_js("us-states.js", conversion)
 print("Generating top cluster tables.")
-generate_display_tables()
+generate_display_tables(conversion)
 print("Preparing taxodium view.")
 sd = {}
 with open("cluster_labels.tsv") as inf:
