@@ -105,20 +105,23 @@ function loadTargetTable(target) {
         csv_options: {separator: '\t', delimiter: '\t'},
         datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
         custom_formatting: [
-            [9, function (data,type,row,meta) {
+            [10, function (data,type,row,meta) {
                 return '<a href="' + encodeURI(data) + '" title="Click to View in Taxodium" target="_blank">View Cluster</a>';
               }
-            ],[8, function (data,type,row,meta) {
+            ],[9, function (data,type,row,meta) {
                 return '<div title="Importance estimate based on cluster size and age. Not directly comparable between regions with varying sequencing levels.">' + data + "</div>"
               }
-            ],[7, function (data,type,row,meta) {
+            ],[8, function (data,type,row,meta) {
                 return '<div title="Confidence metric for the origin; 1 is maximal, 0 is minimal.">' + data + "</div>"
               }
-            ],[6, function (data,type,row,meta) {
+            ],[7, function (data,type,row,meta) {
                 return '<div title="The origin region with the greatest weight. May not be the true origin, especially if the corresponding confidence value is below 0.5.">' + data + "</div>"
               }
+            ],[6, function (data,type,row,meta) {
+                return '<div title="Pangolin lineage of the ancestral introduction.">' + data + "</div>"
+              }
             ],[5, function (data,type,row,meta) {
-                return '<div title="Pangolin lineage and nextstrain clade of the ancestral introduction.">' + data + "</div>"
+                return '<div title="Nextstrain clade of the ancestral introduction.">' + data + "</div>"
               }
             ],[4, function (data,type,row,meta) {
                 return '<div title="Date of the latest sample from this cluster.">' + data + "</div>"

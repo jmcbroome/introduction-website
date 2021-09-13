@@ -64,5 +64,5 @@ with open(mf) as inf:
                 spent[3] = sd[spent[0]]
             print("\t".join(spent),file=outf)
 print("Generating viewable pb.")
-subprocess.check_call("matUtils extract -i clean.pb -M clusterswapped.tsv --write-taxodium cview.pb --title Geographyl -g " + args.annotation + " -f " + args.reference,shell=True)
+subprocess.check_call("matUtils extract -i clean.pb -M clusterswapped.tsv --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
 print("Process completed; check website for results.")

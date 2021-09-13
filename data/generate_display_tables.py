@@ -51,7 +51,31 @@ def generate_display_tables():
                 default_lines.append(entry.strip())
                 assert len(default_lines) == 100
 
-    header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade/Lineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
+    # def split_clade_linage(cl):
+    #     #split the clade/lineage field into distinct clades and lineages
+    #     #based on whether it has a "." in it, since pangolin lineage always has a "." and nextstrain clade never does
+    #     cl = spent[12].split(",")
+    #     clade = "none"
+    #     lineage = "none"
+    #     if len(cl) == 2:
+    #         if "." in cl[0]:
+    #             clade = cl[1]
+    #             lineage = cl[0]
+    #         else:
+    #             clade = cl[0]
+    #             lineage = cl[1]
+    #     elif len(cl) == 1:
+    #         if len(cl[0]) == 0:
+    #             clade = "none"
+    #             lineage = "none"
+    #         elif "." in cl[0]:
+    #             lineage = cl[0]
+    #             clade = "none"
+    #         else:
+    #             clade = cl[0]
+    #             lineage = "none"
+    #     return clade, lineage
+    header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
     for reg, lines in filelines.items():
@@ -66,7 +90,7 @@ def generate_display_tables():
                 samples = spent[-1].split(",")
                 for s in samples:
                     print(s + "\t" + spent[0],file=mout)
-
+                # clade, lineage = split_clade_lineage(spent[12])
                 #generate a link to exist in the last column
                 #based on the global "host" variable.
                 #and including all html syntax.
@@ -77,7 +101,7 @@ def generate_display_tables():
                 link += '&colourBy={"variable":"country","gene":"S","colourLines":false,"residue":"681"}'
                 link += "&zoomToSearch=0"
                 #additionally process the date strings
-                outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
+                outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
                 print("\t".join(outline),file=outf)
 
     mout.close()
@@ -86,12 +110,13 @@ def generate_display_tables():
         print(header,file=outf)
         for gv,dl in sorted_defaults:
             spent = dl.split("\t")
+            # clade, lineage = split_clade_lineage(spent[12])
             link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
             link += '&search=[{"id":0.123,"category":"country","value":"'
             link += spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
             link += '&colourBy={"variable":"country","gene":"S","colourLines":false,"residue":"681"}'
             link += "&zoomToSearch=0"
-            outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[10], spent[11], spent[4], link]
+            outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
-#generate_display_tables()
+generate_display_tables()
