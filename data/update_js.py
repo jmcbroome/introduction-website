@@ -9,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 def update_js(target, conversion = {}):
     svd = {"type":"FeatureCollection", "features":[]}
     monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
-    conversion.update({v:k for k,v in conversion.items()})
+    #conversion.update({v:k for k,v in conversion.items()})
     conversion["indeterminate"] = "indeterminate"
     #ivc = cdf.region.value_counts()
     datepoints = ["all", dt.date.today()-relativedelta(months=12), dt.date.today()-relativedelta(months=6), dt.date.today()-relativedelta(months=3)]
@@ -56,13 +56,13 @@ def update_js(target, conversion = {}):
                             ovc[reg][orig] = 0
                         ovc[reg][orig] += 1
     dsumin = {sd:sum(invc.values()) for sd,invc in dinvc.items()}
-
     #print(invc.keys())
     sids = {}
     #with open(target) as inf:
     f = open(target)
     geojson_lines = json.load(f)
     f.close()
+    id = 0
     for data in geojson_lines["features"]:
         # for entry in inf:
             # if entry[0:2] == "//" or entry[0:3] == "var" or entry[0] == "]":
@@ -73,7 +73,12 @@ def update_js(target, conversion = {}):
             prefix = prefd[sd]
             data["properties"]["intros"][prefix + "basecount"] = invc.get(data["properties"]["name"],0) 
         svd["features"].append(data)
-        sids[data["properties"]["name"]] = data["id"]
+        if "id" in data:
+            sids[data["properties"]["name"]] = data["id"]
+        else:
+            data["id"] = str(id)
+            sids[data["properties"]["name"]] = str(id)
+            id += 1
     #update the data intros list with specific state values
     for ftd in svd["features"]:
         #update the ftd["properties"]["intros"] with each state
@@ -97,8 +102,10 @@ def update_js(target, conversion = {}):
                     ftd["properties"]["intros"][prefix + oid] = -0.5
     with open("regions.js","w") as outf:
         print("//data updated via update_js.py",file=outf)
+        print('var None = "None"',file=outf)
         print('var introData = {"type":"FeatureCollection","features":[',file=outf)
         for propd in svd['features']:
+            assert "intros" in propd["properties"]
             print(str(propd) + ",",file=outf)
         print("]};",file=outf)
 stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",

@@ -14,7 +14,7 @@ with open("samplenames.txt") as inf:
             if country == "USA":
                 state = entry.split("/")[1].split("-")[0]
                 if state in conversion:
-                    print(entry.strip(), state, file = outf)
+                    print(entry.strip() + "\t" + state, file = outf)
                 else:
                     print(entry.strip(), file = badsamples)
 badsamples.close()

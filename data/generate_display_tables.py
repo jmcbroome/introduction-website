@@ -1,12 +1,9 @@
-def generate_display_tables(conversion = {}):
+def generate_display_tables(conversion = {}, host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/"):
     filelines = {}
     def fix_month(datestr):
         monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
         splitr = datestr.split("-")
         return splitr[0] + "-" + monthswap.get(splitr[1],splitr[1]) + "-" + splitr[2]
-    #this will need to be edited on migrating to a proper host service.
-    host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/"
-
     default_growthvs = []
     default_lines = []
     with open("hardcoded_clusters.tsv") as inf:
@@ -47,7 +44,7 @@ def generate_display_tables(conversion = {}):
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
     for reg, lines in filelines.items():
-        with open("display_tables/" + reg + "_topclusters.tsv", "w+") as outf:
+        with open("display_tables/" + conversion[reg] + "_topclusters.tsv", "w+") as outf:
             print(header,file=outf)
             for l in lines:
                 #process the line 
