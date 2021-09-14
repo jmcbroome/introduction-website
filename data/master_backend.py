@@ -24,6 +24,7 @@ def parse_setup():
     parser.add_argument("-t","--threads",type=int,help="Number of threads to use.", default = 4)
     parser.add_argument("-l","--lexicon",help="Optionally, link to a text file containing all names for the same region, one region per row, tab separated.", default = "")
     parser.add_argument("-X","--lookahead",type=int,help="Number to pass to parameter -X of introduce. Increase to merge nested clusters. Default 2", default = 2)
+    parser.add_argument("-h","--host",help="Web-accessible link to the current directory for taxodium cluster view.",default="https://raw.githubusercontent.com/jmcbroome/introduction-website/main/")
     args = parser.parse_args()
     return args
 
