@@ -1,7 +1,7 @@
 #python "backend" code for prepping us-states.js data from a tsv for interactive website display
 #it only needs to be ran once per updated tree
 #import pandas as pd
-import ast
+import json
 import math
 import datetime as dt
 from dateutil.relativedelta import relativedelta
@@ -59,17 +59,21 @@ def update_js(target, conversion = {}):
 
     #print(invc.keys())
     sids = {}
-    with open(target) as inf:
-        for entry in inf:
-            if entry[0:2] == "//" or entry[0:3] == "var" or entry[0] == "]":
-                continue
-            data = ast.literal_eval(entry.strip().strip(","))
-            data["properties"]["intros"] = {}
-            for sd, invc in dinvc.items():
-                prefix = prefd[sd]
-                data["properties"]["intros"][prefix + "basecount"] = invc.get(data["properties"]["name"],0) 
-            svd["features"].append(data)
-            sids[data["properties"]["name"]] = data["id"]
+    #with open(target) as inf:
+    f = open(target)
+    geojson_lines = json.load(f)
+    f.close()
+    for data in geojson_lines["features"]:
+        # for entry in inf:
+            # if entry[0:2] == "//" or entry[0:3] == "var" or entry[0] == "]":
+                # continue
+        # data = ast.literal_eval(entry.strip().strip(","))
+        data["properties"]["intros"] = {}
+        for sd, invc in dinvc.items():
+            prefix = prefd[sd]
+            data["properties"]["intros"][prefix + "basecount"] = invc.get(data["properties"]["name"],0) 
+        svd["features"].append(data)
+        sids[data["properties"]["name"]] = data["id"]
     #update the data intros list with specific state values
     for ftd in svd["features"]:
         #update the ftd["properties"]["intros"] with each state
@@ -91,9 +95,9 @@ def update_js(target, conversion = {}):
                     ftd["properties"]["intros"][prefix + oid] = math.log10(count * sumin / invc[iid] / otvc[origin])
                 else:
                     ftd["properties"]["intros"][prefix + oid] = -0.5
-    with open(target,"w") as outf:
-        print("//data updated via updated-us-states.py",file=outf)
-        print('var introStatesData = {"type":"FeatureCollection","features":[',file=outf)
+    with open("regions.js","w") as outf:
+        print("//data updated via update_js.py",file=outf)
+        print('var introData = {"type":"FeatureCollection","features":[',file=outf)
         for propd in svd['features']:
             print(str(propd) + ",",file=outf)
         print("]};",file=outf)
@@ -106,4 +110,4 @@ stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"C
     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
 if __name__ == "__main__":
-    update_js("us-states.js",stateconv)
+    update_js("us-states.geo.json",stateconv)

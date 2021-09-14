@@ -44,7 +44,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'b
 // geoJson = L.geoJson(statesData, {style: style}).addTo(map);
 
 var geojson;
-geojson = L.geoJson(introStatesData, {
+geojson = L.geoJson(introData, {
     style: style,
     onEachFeature: onEachFeature
 }).addTo(map);

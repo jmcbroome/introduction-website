@@ -23,6 +23,6 @@ subprocess.check_call("matUtils extract -i " + pbf + " -s unlabeled_samples.txt 
 #update the arguments parsed
 args.input = "clean.pb"
 args.sample_regions = "sample_regions.tsv"
-args.geojson = "us-states.js"
+args.geojson = "us-states.geo.json"
 print("Starting main pipeline.")
 primary_pipeline(args)
