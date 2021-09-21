@@ -3,17 +3,22 @@ var global_state = "default";
 var global_time = "";
 var global_state_id = "00";
 // var host = "raw.githubusercontent.com/jmcbroome/introduction-website/main/"
+var max_basecount = 0;
+for (i = 0; i < introData.features.length; i++) {
+    let bc = introData.features[i]["properties"]["intros"]["basecount"];
+    if (bc > max_basecount) {
+        max_basecount = bc;
+    }
+}
 
-
-// Map values from geoJSON to a color 
 function getColorBase(d) {
-    return d > 10000 ? '#800026' :
-           d > 5000  ? '#BD0026' :
-           d > 1000  ? '#E31A1C' :
-           d > 500  ? '#FC4E2A' :
-           d > 200   ? '#FD8D3C' :
-           d > 100   ? '#FEB24C' :
-           d > 50   ? '#FED976' :
+    return d > max_basecount * 0.9 ? '#800026' :
+           d > max_basecount * 0.75   ? '#BD0026' :
+           d > max_basecount * 0.5   ? '#E31A1C' :
+           d > max_basecount * 0.25   ? '#FC4E2A' :
+           d > max_basecount * 0.1    ? '#FD8D3C' :
+           d > max_basecount * 0.05   ? '#FEB24C' :
+           d > max_basecount * 0.01    ? '#FED976' :
                       '#FFEDA0';
 }
 
