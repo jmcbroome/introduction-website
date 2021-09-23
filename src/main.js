@@ -108,7 +108,7 @@ function loadTargetTable(target) {
         element: 'table-container', 
         allow_download: false,
         csv_options: {separator: '\t', delimiter: '\t'},
-        datatables_options: {"paging": true, "searching": true, "order": [[8,"desc"]]},
+        datatables_options: {"paging": true, "searching": true, "order": [[9,"desc"]]},
         custom_formatting: [
             [10, function (data,type,row,meta) {
                 return '<a href="' + encodeURI(data) + '" title="Click to View in Taxodium" target="_blank">View Cluster</a>';
