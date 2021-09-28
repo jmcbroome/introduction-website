@@ -74,7 +74,7 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
         print(header,file=outf)
         for gv,dl in sorted_defaults:
             spent = dl.split("\t")
-            link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
+            link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb.gz"
             link += '&search=[{"id":0.123,"category":"country","value":"'
             link += spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'

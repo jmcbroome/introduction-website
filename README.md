@@ -9,6 +9,7 @@ Navigate to the "data" directory and run "prepare_us_states.py" with the files o
 ```
 cd data
 python3 prepare_us_states.py -i path/to/public-latest.all.masked.pb -m path/to/public-latest.metadata.tsv -h web/accessible/link/to/index/directory -f path/to/NC_045512v2.fa -a path/to/ncbiGenes.gtf -l state_lexicon.txt
+gzip cview.pb
 ```
 
 You can then view your results with a Python server initiated in the main directory.
@@ -26,6 +27,7 @@ Once you've obtained these files, you can navigate to the data directory and run
 
 ```
 python3 master_backend.py -i path/to/your.pb -m path/to/matching/metadata.tsv -f path/to/NC_045512v2.fa -a path/to/ncbiGenes.gtf -j path/to/your/geo.json -s path/to/your/sample_regions.tsv -l path/to/your/lexicon.txt -h web/accessible/link/to/index/directory
+gzip cview.pb
 ```
 
 You can optionally pass -G or -X parameters, which will be applied when introduce is called. 
