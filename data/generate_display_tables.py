@@ -58,7 +58,7 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 #generate a link to exist in the last column
                 #based on the global "host" variable.
                 #and including all html syntax.
-                link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb"
+                link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb.gz"
                 link += '&search=[{"id":0.123,"category":"country","value":"'
                 link += spent[0]
                 link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
