@@ -58,11 +58,11 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 #generate a link to exist in the last column
                 #based on the global "host" variable.
                 #and including all html syntax.
-                link = "https://cov2tree-git-newnewmeta-theosanderson.vercel.app/?protoUrl=" + host + "data/cview.pb.gz"
-                link += '&search=[{"id":0.123,"category":"country","value":"'
+                link = "https://taxonium.org/?protoUrl=" + host + "data/cview.pb.gz"
+                link += '&search=[{"id":0.123,"category":"cluster","value":"'
                 link += spent[0]
                 link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
-                link += '&colourBy={"variable":"country","gene":"S","colourLines":false,"residue":"681"}'
+                link += '&colourBy={"variable":"Country","gene":"S","colourLines":false,"residue":"681"}'
                 link += "&zoomToSearch=0"
                 #additionally process the date strings
                 outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
@@ -74,9 +74,8 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
         print(header,file=outf)
         for gv,dl in sorted_defaults:
             spent = dl.split("\t")
-            #link = "https://cov2tree.org/?protoUrl=" + host + "data/cview.pb.gz"
-            link = "https://cov2tree-git-newnewmeta-theosanderson.vercel.app/?protoUrl=" + host + "data/cview.pb.gz"
-            link += '&search=[{"id":0.123,"category":"Country","value":"'
+            link = "https://taxonium.org/?protoUrl=" + host + "data/cview.pb.gz"
+            link += '&search=[{"id":0.123,"category":"cluster","value":"'
             link += spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
             link += '&colourBy={"variable":"Country","gene":"S","colourLines":false,"residue":"681"}'
