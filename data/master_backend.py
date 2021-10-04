@@ -55,13 +55,19 @@ def primary_pipeline(args):
         with open("clusterswapped.tsv","w+") as outf:
             #clusterswapped is the same as the metadata input
             #except with the country column updated. 
+            i = 0
             for entry in inf:
-                spent = entry.strip().split("\t")                
-                if spent[0] in sd:
-                    spent[3] = sd[spent[0]]
+                spent = entry.strip().split("\t")
+                if i == 0:
+                    spent.append("cluster")
+                elif spent[0] in sd:
+                    spent.append(sd[spent[0]])
+                else:
+                    spent.append("N/A")
+                i += 1
                 print("\t".join(spent),file=outf)
     print("Generating viewable pb.")
-    subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
+    subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv -F cluster --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
     print("Process completed; check website for results.")
 
 if __name__ == "__main__":
