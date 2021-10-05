@@ -65,6 +65,8 @@ def primary_pipeline(args):
                 if i == 0:
                     spent.append("cluster")
                     spent.append("region")
+                    i += 1
+                    print("\t".join(spent),file=outf)
                     continue
                 if spent[0] in sd:
                     spent.append(sd[spent[0]])
