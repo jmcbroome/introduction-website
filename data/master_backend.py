@@ -36,8 +36,8 @@ def primary_pipeline(args):
     else:
         conversion = {}
     # print(conversion)
-    print("Calling introduce.")
-    subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
+    #print("Calling introduce.")
+    #subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
     print("Updating map display data.")
     update_js(args.geojson, conversion)
     print("Generating top cluster tables.")
@@ -50,7 +50,11 @@ def primary_pipeline(args):
             if spent[0] == "sample":
                 continue
             sd[spent[0]] = spent[1]
-
+    rd = {}
+    with open(args.sample_regions) as inf:
+        for entry in inf:
+            spent = entry.strip().split()
+            rd[spent[0]] = spent[1]
     with open(mf) as inf:
         with open("clusterswapped.tsv","w+") as outf:
             #clusterswapped is the same as the metadata input
@@ -60,14 +64,20 @@ def primary_pipeline(args):
                 spent = entry.strip().split("\t")
                 if i == 0:
                     spent.append("cluster")
-                elif spent[0] in sd:
+                    spent.append("region")
+                    continue
+                if spent[0] in sd:
                     spent.append(sd[spent[0]])
                 else:
                     spent.append("N/A")
+                if spent[0] in rd:
+                    spent.append(rd[spent[0]])
+                else:
+                    spent.append("None")
                 i += 1
                 print("\t".join(spent),file=outf)
     print("Generating viewable pb.")
-    subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv -F cluster --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
+    subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv -F cluster,region --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
     print("Process completed; check website for results.")
 
 if __name__ == "__main__":
