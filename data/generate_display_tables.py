@@ -60,7 +60,7 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 #and including all html syntax.
                 link = "https://cov2tree-git-newnewmeta-theosanderson.vercel.app/?protoUrl=" + host + "data/cview.pb.gz"
                 link += '&search=[{"id":0.123,"category":"cluster","value":"'
-                link += spent[0]
+                link += spent[9] + "_" + spent[0]
                 link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
                 link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
                 link += "&zoomToSearch=0"
@@ -76,7 +76,7 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
             spent = dl.split("\t")
             link = "https://cov2tree-git-newnewmeta-theosanderson.vercel.app/?protoUrl=" + host + "data/cview.pb.gz"
             link += '&search=[{"id":0.123,"category":"cluster","value":"'
-            link += spent[0]
+            link += spent[9] + "_" + spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
             link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
             link += "&zoomToSearch=0"
