@@ -44,12 +44,19 @@ def primary_pipeline(args):
     generate_display_tables(conversion, host = args.host)
     print("Preparing taxodium view.")
     sd = {}
-    with open("cluster_labels.tsv") as inf:
+    # with open("cluster_labels.tsv") as inf:
+    #     for entry in inf:
+    #         spent = entry.strip().split()
+    #         if spent[0] == "sample":
+    #             continue
+    #         sd[spent[0]] = spent[1]
+    with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split()
-            if spent[0] == "sample":
+            if spent[0] == 'cluster_id':
                 continue
-            sd[spent[0]] = spent[1]
+            for s in spent[-1].split(","):
+                sd[s] = spent[9] + "_" + spent[0]
     rd = {}
     with open(args.sample_regions) as inf:
         for entry in inf:
