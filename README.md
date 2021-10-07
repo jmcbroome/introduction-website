@@ -8,7 +8,7 @@ Navigate to the "data" directory and run "prepare_us_states.py" with the files o
 
 ```
 cd data
-python3 prepare_us_states.py -i path/to/public-latest.all.masked.pb -m path/to/public-latest.metadata.tsv -h web/accessible/link/to/index/directory -f path/to/NC_045512v2.fa -a path/to/ncbiGenes.gtf -l state_lexicon.txt
+python3 prepare_us_states.py -i path/to/public-latest.all.masked.pb -m path/to/public-latest.metadata.tsv -H web/accessible/link/to/index/directory -f path/to/NC_045512v2.fa -a path/to/ncbiGenes.gtf -l state_lexicon.txt
 gzip cview.pb
 ```
 
