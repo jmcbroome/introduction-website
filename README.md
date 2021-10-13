@@ -2,6 +2,9 @@
 Code to generate a webpage displaying introductions inferred via [matUtils introduce](https://usher-wiki.readthedocs.io/en/latest/matUtils.html#introduce). Contains additional scripts and files required to generate a map for each state of the United States. To construct a site for a different region, additional files and preprocessing is required.
 
 ## Quickstart: Display the United States
+
+This site uses python to perform backend setup and vanilla javascript for website rendering. You will need to have the [UShER software suite](https://usher-wiki.readthedocs.io/en/latest/Installation.html) installed and available on your path. Some versions of python may be missing the dateutil standard package as well, which is a required dependency; it can be installed via conda.
+
 Clone this repository into your workspace of choice, then obtain the [latest public data from the MAT repository](http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/)- specifically, "public-latest.all.masked.pb" and "public-latest.metadata.tsv.gz". Unzip the metadata file with your preferred tool. Additionally download the [gtf](https://usher-wiki.readthedocs.io/en/latest/_downloads/2052d9a7147253e32a3420939550ac63/ncbiGenes.gtf) and [reference](https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa) files to produce a taxodium view. 
 
 Navigate to the "data" directory and run "prepare_us_states.py" with the files obtained above, ala the below.
