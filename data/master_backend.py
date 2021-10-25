@@ -11,6 +11,9 @@ def read_lexicon(lfile):
             spent = entry.strip().split(",")
             for alternative in spent:
                 conversion[alternative] = spent[0]
+                # automatically create an all uppercase lexicon alternative
+                if alternative != alternative.upper():
+                    conversion[alternative.upper()] = spent[0]
     return conversion
 
 def parse_setup():
