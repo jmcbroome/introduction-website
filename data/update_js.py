@@ -13,6 +13,10 @@ def update_js(target, conversion = {}):
     conversion["indeterminate"] = "indeterminate"
     #ivc = cdf.region.value_counts()
     datepoints = ["all", dt.date.today()-relativedelta(months=12), dt.date.today()-relativedelta(months=6), dt.date.today()-relativedelta(months=3)]
+    #here, the data is stored in a series of dictionaries
+    #which are generally structured with the minimum date as the outermost layer
+    #then the destination of an introduction
+    #than the source of an introduction
     prefd = {datepoints[0]:"", datepoints[1]:"12_", datepoints[2]:"6_", datepoints[3]:"3_"}
     dinvc = {d:{} for d in datepoints}
     dsvc = {d:{} for d in datepoints}
@@ -44,10 +48,6 @@ def update_js(target, conversion = {}):
                     ovc = dovc[startdate]
                     if reg not in ovc:
                         ovc[reg] = {}
-                    #confidence = [float(c) for c in spent[11].split(",")]
-                    #for i,tlo in enumerate(spent[10].split(",")):
-                        #if confidence[i] < 0.1:
-                        #    continue
                     for tlo in spent[10].split(","):
                         orig = conversion[tlo]
                         if orig not in otvc:
@@ -57,18 +57,14 @@ def update_js(target, conversion = {}):
                             ovc[reg][orig] = 0
                         ovc[reg][orig] += 1
     dsumin = {sd:sum(invc.values()) for sd,invc in dinvc.items()}
-    #print(invc.keys())
     sids = {}
-    #with open(target) as inf:
     f = open(target)
     geojson_lines = json.load(f)
     f.close()
     id = 0
+    #we fill in the basic count of introductions to each area first
+    #as well as fill in an integer "ID" if its not already present
     for data in geojson_lines["features"]:
-        # for entry in inf:
-            # if entry[0:2] == "//" or entry[0:3] == "var" or entry[0] == "]":
-                # continue
-        # data = ast.literal_eval(entry.strip().strip(","))
         data["properties"]["intros"] = {}
         for sd, invc in dinvc.items():
             prefix = prefd[sd]
