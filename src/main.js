@@ -70,7 +70,19 @@ info.update = function (props) {
     if (global_state == "default") {
         this._div.innerHTML = '<h4># Clusters in ' + (props ? '<b>' + props.name + '</b><br />' + props.intros[global_time + "basecount"] : 'Hover over a state');
     } else {
-        this._div.innerHTML = '<h4># Introductions to ' + global_state + ' from ' + (props ? '<b>' + props.name + '</b><br />' + props.intros[global_time + "raw" + global_state_id] : 'Hover over a state');
+        str = '<h4># Introductions to ' + global_state + ' from ';
+        if (props) {
+            keyval = global_time + "raw" + global_state_id;
+            if (keyval in props.intros){
+                countval = props.intros[keyval];
+            } else {
+                countval = 0;
+            }
+            str += '<b>' + props.name + '</b><br />' + countval;
+        } else {
+            str += 'Hover over a state';
+        }
+        this._div.innerHTML = str;
     }
 };
 
