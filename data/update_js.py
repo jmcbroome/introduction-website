@@ -105,7 +105,7 @@ def update_js(target, conversion = {}):
                     #for example, even a single introduction between two distant places may be surprising
                     #but that doesn't mean it should get a lot of emphasis. So we cut off anything with less than 5 introductions total.
                     ftd["properties"]["intros"][prefix + did] = -0.5
-    with open("regions.js","w") as outf:
+    with open("regions.js","w+") as outf:
         print("//data updated via update_js.py",file=outf)
         print('var None = "None"',file=outf)
         print('var introData = {"type":"FeatureCollection","features":[',file=outf)
