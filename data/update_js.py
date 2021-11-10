@@ -9,8 +9,9 @@ from dateutil.relativedelta import relativedelta
 def update_js(target, conversion = {}):
     svd = {"type":"FeatureCollection", "features":[]}
     monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
-    #conversion.update({v:k for k,v in conversion.items()})
+    conversion.update({v:v for k,v in conversion.items()})
     conversion["indeterminate"] = "indeterminate"
+    #print(conversion)
     #ivc = cdf.region.value_counts()
     datepoints = ["all", dt.date.today()-relativedelta(months=12), dt.date.today()-relativedelta(months=6), dt.date.today()-relativedelta(months=3)]
     #here, the data is stored in a series of dictionaries
@@ -21,13 +22,13 @@ def update_js(target, conversion = {}):
     dinvc = {d:{} for d in datepoints}
     dsvc = {d:{} for d in datepoints}
     dotvc = {d:{} for d in datepoints}
-    dovc = {d:{k:{} for k in conversion.keys()} for d in datepoints}
+    dovc = {d:{} for d in datepoints}
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split("\t")
             if spent[0] == "cluster_id":
                 continue
-            reg = conversion.get(spent[9],spent[9])
+            reg = conversion[spent[9]]
             if spent[10] == "indeterminate":
                 continue
             #get the date of this cluster's earliest sample into a usable form
@@ -88,7 +89,8 @@ def update_js(target, conversion = {}):
             #get everything where this specific row/region is an origin
             prefix = prefd[sd]
             #fill with 0
-            inv_ovc = {k:sd.get(iid,0) for k,sd in ovc.items()}
+            inv_ovc = {k:subd.get(iid,0) for k,subd in ovc.items()}
+            print(inv_ovc)
             for destination, count in inv_ovc.items():
                 #scale the count for display
                 if destination == "indeterminate":
@@ -105,7 +107,7 @@ def update_js(target, conversion = {}):
                     #for example, even a single introduction between two distant places may be surprising
                     #but that doesn't mean it should get a lot of emphasis. So we cut off anything with less than 5 introductions total.
                     ftd["properties"]["intros"][prefix + did] = -0.5
-    with open("regions.js","w+") as outf:
+    with open("regions.js","w") as outf:
         print("//data updated via update_js.py",file=outf)
         print('var None = "None"',file=outf)
         print('var introData = {"type":"FeatureCollection","features":[',file=outf)
