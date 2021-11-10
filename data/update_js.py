@@ -90,7 +90,7 @@ def update_js(target, conversion = {}):
             prefix = prefd[sd]
             #fill with 0
             inv_ovc = {k:subd.get(iid,0) for k,subd in ovc.items()}
-            print(inv_ovc)
+            #print(inv_ovc)
             for destination, count in inv_ovc.items():
                 #scale the count for display
                 if destination == "indeterminate":
