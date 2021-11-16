@@ -7,9 +7,25 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
     default_growthvs = []
     default_lines = []
     with open("hardcoded_clusters.tsv") as inf:
+        cr = "None"
+        buffer = []
         for entry in inf:
             spent = entry.strip().split("\t")
-            if spent[0] == "cluster_id" or spent[3] == "no-valid-date":
+            if spent[0] == "cluster_id": 
+                continue
+            reg = conversion[spent[9]]
+            if reg not in filelines:
+                filelines[reg] = []
+            if cr == "None":
+                cr = reg
+            elif reg != cr:
+                #when moving to a new region
+                if len(filelines[cr]) < 100:
+                    filelines[cr].extend(buffer[:100-len(filelines[cr])])
+                buffer = []
+                cr = reg
+            if spent[3] == "no-valid-date":
+                buffer.append(entry.strip())
                 continue
             #new method- we just store all of them and use paging
             #split each file by state
@@ -23,9 +39,6 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
             #to make this substantially easier.
             #just store the first 5 encountered
             #for each unique region encountered.
-            reg = conversion[spent[9]]
-            if reg not in filelines:
-                filelines[reg] = []
             if len(filelines[reg]) < 100:
                 filelines[reg].append(entry.strip())
             #now, check to see if this scores in the top 100 overall. Significantly more complicated since we have to sort things out as we go here.
@@ -39,7 +52,9 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 default_growthvs.append(float(spent[4]))
                 default_lines.append(entry.strip())
                 assert len(default_lines) == 100
-
+        #remove any remaining buffer for the last region in the file as well.
+        if len(filelines[cr]) < 100:
+            filelines[cr].extend(buffer[:100-len(filelines[cr])])
     header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
