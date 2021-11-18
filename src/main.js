@@ -45,8 +45,6 @@ function style(feature) {
 }
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-// L.geoJson(statesData).addTo(map);
-// geoJson = L.geoJson(statesData, {style: style}).addTo(map);
 
 var geojson;
 geojson = L.geoJson(introData, {
@@ -54,6 +52,7 @@ geojson = L.geoJson(introData, {
     onEachFeature: onEachFeature
 }).addTo(map);
 
+//control to display data for each region on hover
 var info = L.control();
 
 info.onAdd = function (map) {
@@ -62,7 +61,7 @@ info.onAdd = function (map) {
     return this._div;
 };
 
-// method that we will use to update the control based on feature properties passed
+// method to update the info panel control based on feature properties passed
 info.update = function (props) {
     // this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
     //     '<b>' + props.name + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
@@ -203,6 +202,7 @@ function changeView(e) {
         resetView(e);
         global_state = "default";
         global_state_id = "00";
+        legend.update(global_state);
     } else {
         loadStateTable(e);
         global_state = e.target.feature.properties.name;
@@ -213,7 +213,45 @@ function changeView(e) {
                 layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[global_time + e.feature.id])})
             }
         });
+        legend.update(global_state);
     }
+}
+
+var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info legend'); // create a div with a class "info lengend"
+    this.update(global_state);
+    return this._div;
+};
+
+// method to update the legend control based on feature properties passed
+legend.update = function (props) {
+    // basic static legend with "high" vs "low" labels
+    var ltext = '<i style="background:#800026"></i>high<br>' +
+         '<i style="background:#BD0026"></i><br>' +
+         '<i style="background:#E31A1C"></i><br>' +
+         '<i style="background:#FC4E2A"></i><br>' +
+         '<i style="background:#FD8D3C"></i><br>' +
+         '<i style="background:#FEB24C"></i><br>' +
+         '<i style="background:#FED976"></i><br>' +
+         '<i style="background:#FFEDA0"></i>low';
+    if (props != "default") {
+        ltext = '<strong>Introductions</strong><br><small>Log<sub>10</sub> fold enrichment</small><br>' + 
+            ltext + '<br><br><i style="background:#1a0080"></i>Focal Region';
+    } else {
+        // cut points for creating color bins
+        var grades = [1, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01];
+        ltext = '<strong>Number of Clusters</strong><br>';
+        // loop through the bin cut points and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            const stop = Math.round(max_basecount * grades[i]);
+            const start = Math.round(max_basecount * grades[i + 1]);
+            ltext += '<i style="background:' + getColorBase(max_basecount * grades[i]) + '"></i> ' +
+                (start ?  start + '&ndash;' + stop + '<br>' : '0&ndash;'+ stop);
+        }
+    }
+    this._div.innerHTML = ltext;
 }
 
 function onEachFeature(feature, layer) {
@@ -225,23 +263,4 @@ function onEachFeature(feature, layer) {
 }
 
 info.addTo(map);
-
-// var legend = L.control({position: 'bottomright'});
-
-// legend.onAdd = function (map) {
-
-//     var div = L.DomUtil.create('div', 'info legend'),
-//         grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-//         labels = [];
-
-//     // loop through our density intervals and generate a label with a colored square for each interval
-//     for (var i = 0; i < grades.length; i++) {
-//         div.innerHTML +=
-//             '<i style="background:' + getColorBase(grades[i] + 1) + '"></i> ' +
-//             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-//     }
-
-//     return div;
-// };
-
-// legend.addTo(map);
+legend.addTo(map);
