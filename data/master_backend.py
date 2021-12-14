@@ -55,11 +55,11 @@ def primary_pipeline(args):
     #         sd[spent[0]] = spent[1]
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
-            spent = entry.strip().split()
+            spent = entry.strip().split('\t')
             if spent[0] == 'cluster_id':
                 continue
             for s in spent[-1].split(","):
-                sd[s] = spent[9] + "_" + spent[0]
+                sd[s] = spent[0]
     rd = {}
     with open(args.sample_regions) as inf:
         for entry in inf:
