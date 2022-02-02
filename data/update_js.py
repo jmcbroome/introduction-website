@@ -5,6 +5,7 @@ import json
 import math
 import datetime as dt
 from dateutil.relativedelta import relativedelta
+
 #cdf = pd.read_csv('hardcoded_clusters.tsv',sep='\t')
 def update_js(target, conversion = {}):
     svd = {"type":"FeatureCollection", "features":[]}
@@ -115,6 +116,7 @@ def update_js(target, conversion = {}):
             assert "intros" in propd["properties"]
             print(str(propd) + ",",file=outf)
         print("]};",file=outf)
+
 stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
     "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
     "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
@@ -123,5 +125,6 @@ stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"C
     "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
+
 if __name__ == "__main__":
     update_js("us-states.geo.json",stateconv)
