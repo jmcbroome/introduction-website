@@ -309,7 +309,6 @@ function colorIntros() {
                 layer.setStyle({fillColor: getColorIntro(layer.feature.properties.intros[global_time + global_state_id])});
             }
         });
-        legend.update(global_state);
     }
     // update legend
     legend.update(global_state);
@@ -422,43 +421,6 @@ legend.update = function (props) {
         }
     } else {
         ltext = legend_default;
-    }
-    this._div.innerHTML = ltext;
-}
-
-var legend = L.control({position: 'bottomleft'});
-
-legend.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info legend'); // create a div with a class "info lengend"
-    this.update(global_state);
-    return this._div;
-};
-
-// method to update the legend control based on feature properties passed
-legend.update = function (props) {
-    // basic static legend with "high" vs "low" labels
-    var ltext = '<i style="background:#800026"></i>high<br>' +
-         '<i style="background:#BD0026"></i><br>' +
-         '<i style="background:#E31A1C"></i><br>' +
-         '<i style="background:#FC4E2A"></i><br>' +
-         '<i style="background:#FD8D3C"></i><br>' +
-         '<i style="background:#FEB24C"></i><br>' +
-         '<i style="background:#FED976"></i><br>' +
-         '<i style="background:#FFEDA0"></i>low';
-    if (props != "default") {
-        ltext = '<strong>Introductions</strong><br><small>Log<sub>10</sub> fold enrichment</small><br>' + 
-            ltext + '<br><br><i style="background:#1a0080"></i>Focal Region';
-    } else {
-        // cut points for creating color bins
-        var grades = [1, 0.9, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01];
-        ltext = '<strong>Number of Clusters</strong><br>';
-        // loop through the bin cut points and generate a label with a colored square for each interval
-        for (var i = 0; i < grades.length; i++) {
-            const stop = Math.round(max_basecount * grades[i]);
-            const start = Math.round(max_basecount * grades[i + 1]);
-            ltext += '<i style="background:' + getColorBase(max_basecount * grades[i]) + '"></i> ' +
-                (start ?  start + '&ndash;' + stop + '<br>' : '0&ndash;'+ stop);
-        }
     }
     this._div.innerHTML = ltext;
 }
