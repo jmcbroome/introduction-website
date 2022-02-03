@@ -17,15 +17,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 .dropdown {position: relative; display: inline-block; width: 150px}
-.dropdown-content {display: none; position: absolute; z-index: 1000; width: 100%; background-color:#f1f1f1; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)} 
+.dropdown-content {display: none; position: absolute; z-index: 2000; width: 100%; background-color:#f1f1f1; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)} 
 .timel {display: block; width: 100%; text-align: center;}
 .show {display:block;}
 </style>
     <body>
         <h1> Cluster-Tracker </h1>
         <script>
-            function showList() {
-                document.getElementById("myDropdown").classList.toggle("show");
+            function showList(op) {
+                if (op == "time") {
+                    document.getElementById("myDropdown").classList.toggle("show");
+                } else if (op == "color") {
+                    document.getElementById("myDropColor").classList.toggle("show");
+                }
             }
             window.onclick = function(event) {
                 if (!event.target.matches('.dropbtn')) {
@@ -41,12 +45,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             }
         </script>
         <div class="dropdown" id="droploc">
-            <button onclick="showList()" class="dropbtn">Choose Map Display Time Period</button>
+            <button onclick="showList('time')" class="dropbtn">Choose Map Display Time Period</button>
             <div id="myDropdown" class="dropdown-content">
-                <button class="timel" onclick="changeMap(0)">Whole Pandemic</p>
-                <button class="timel" onclick="changeMap(12)">Last 12 Months</p>
-                <button class="timel" onclick="changeMap(6)">Last 6 Months</p>
-                <button class="timel" onclick="changeMap(3)">Last 3 Months</p>
+                <button id="btn_time_0" class="timel btn_selected" onclick="changeMap(0)">Whole Pandemic</p>
+                <button id="btn_time_12" class="timel" onclick="changeMap(12)">Last 12 Months</p>
+                <button id="btn_time_6" class="timel" onclick="changeMap(6)">Last 6 Months</p>
+                <button id="btn_time_3" class="timel" onclick="changeMap(3)">Last 3 Months</p>
+            </div>
+        </div>
+        <div class="dropdown" id="dropcolor">
+            <button onclick="showList('color')" class="dropbtn" id="colorbtn" disabled>Select Map Layer</button>
+            <div id="myDropColor" class="dropdown-content">
+                <button id="btn_color_0" class="timel" onclick="changeScale(0)">Raw Cluster Count</p>
+                <button id="btn_color_1" class="timel btn_selected" onclick="changeScale(1)">Log Fold Enrichment</p>
             </div>
         </div>
         <div id="display" title="This map displays the count of inferred unique families of the virus in each state by default. When a state is selected, it instead displays a scaled estimate of the count of viral introductions to the selected state from each other state.">
