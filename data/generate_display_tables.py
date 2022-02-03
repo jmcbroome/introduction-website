@@ -6,26 +6,29 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
         return splitr[0] + "-" + monthswap.get(splitr[1],splitr[1]) + "-" + splitr[2]
     default_growthvs = []
     default_lines = []
+    totbuff = [] #track overall no valid date clusters to fill in at the end.
     with open("hardcoded_clusters.tsv") as inf:
+        cr = "None"
+        buffer = []
         for entry in inf:
             spent = entry.strip().split("\t")
-            if spent[0] == "cluster_id" or spent[3] == "no-valid-date":
+            if spent[0] == "cluster_id": 
                 continue
-            #new method- we just store all of them and use paging
-            #split each file by state
-            # reg = conversion[spent[9]]
-            # if reg not in filelines:
-            #     filelines[reg] = []  
-            # filelines[reg].append(entry.strip())
-            # default_lines[float(spent[4])] = entry.strip()
-            #the output clusters table is already sorted by 
-            #growth score, so we can use that sorting information
-            #to make this substantially easier.
-            #just store the first 5 encountered
-            #for each unique region encountered.
             reg = conversion[spent[9]]
             if reg not in filelines:
                 filelines[reg] = []
+            if cr == "None":
+                cr = reg
+            elif reg != cr:
+                #when moving to a new region
+                if len(filelines[cr]) < 100:
+                    filelines[cr].extend(buffer[:100-len(filelines[cr])])
+                buffer = []
+                cr = reg
+            if spent[3] == "no-valid-date":
+                buffer.append(entry.strip())
+                totbuff.append((entry.strip(), float(spent[4])))
+                continue
             if len(filelines[reg]) < 100:
                 filelines[reg].append(entry.strip())
             #now, check to see if this scores in the top 100 overall. Significantly more complicated since we have to sort things out as we go here.
@@ -39,7 +42,15 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 default_growthvs.append(float(spent[4]))
                 default_lines.append(entry.strip())
                 assert len(default_lines) == 100
-
+        #remove any remaining buffer for the last region in the file as well.
+        if len(filelines[cr]) < 100:
+            filelines[cr].extend(buffer[:100-len(filelines[cr])])
+        #and if there are less than 100 clusters with dates for the default view, extend that as well.
+        if len(default_lines) < 100:
+            totbuff.sort(key = lambda x: x[1], reverse = True)
+            for t in totbuff[:100-len(default_lines)]:
+                default_lines.append(t[0])
+                default_growthvs.append(0-1/t[1])
     header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
@@ -60,7 +71,7 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 #and including all html syntax.
                 link = "https://taxonium.org/?protoUrl=" + host + "data/cview.pb.gz"
                 link += '&search=[{"id":0.123,"category":"cluster","value":"'
-                link += spent[9] + "_" + spent[0]
+                link += spent[0]
                 link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
                 link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
                 link += "&zoomToSearch=0&blinking=false"
@@ -76,7 +87,7 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
             spent = dl.split("\t")
             link = "https://taxonium.org/?protoUrl=" + host + "data/cview.pb.gz"
             link += '&search=[{"id":0.123,"category":"cluster","value":"'
-            link += spent[9] + "_" + spent[0]
+            link += spent[0]
             link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
             link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
             link += "&zoomToSearch=0&blinking=false"

@@ -1,0 +1,11 @@
+**/display_tables
+data/cview.pb
+data/cview.pb.gz
+data/regions.js
+data/us-states.geo.json
+data/europe.geo.json
+data/hardcoded_clusters.tsv
+data/NC_045512v2.fa
+data/ncbiGenes.gtf
+data/clean.pb
+data/cluster_labels.tsv

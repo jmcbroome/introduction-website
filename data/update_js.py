@@ -5,12 +5,14 @@ import json
 import math
 import datetime as dt
 from dateutil.relativedelta import relativedelta
+
 #cdf = pd.read_csv('hardcoded_clusters.tsv',sep='\t')
 def update_js(target, conversion = {}):
     svd = {"type":"FeatureCollection", "features":[]}
     monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
-    #conversion.update({v:k for k,v in conversion.items()})
+    conversion.update({v:v for k,v in conversion.items()})
     conversion["indeterminate"] = "indeterminate"
+    #print(conversion)
     #ivc = cdf.region.value_counts()
     datepoints = ["all", dt.date.today()-relativedelta(months=12), dt.date.today()-relativedelta(months=6), dt.date.today()-relativedelta(months=3)]
     #here, the data is stored in a series of dictionaries
@@ -21,13 +23,13 @@ def update_js(target, conversion = {}):
     dinvc = {d:{} for d in datepoints}
     dsvc = {d:{} for d in datepoints}
     dotvc = {d:{} for d in datepoints}
-    dovc = {d:{k:{} for k in conversion.keys()} for d in datepoints}
+    dovc = {d:{} for d in datepoints}
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split("\t")
             if spent[0] == "cluster_id":
                 continue
-            reg = conversion.get(spent[9],spent[9])
+            reg = conversion[spent[9]]
             if spent[10] == "indeterminate":
                 continue
             #get the date of this cluster's earliest sample into a usable form
@@ -88,7 +90,8 @@ def update_js(target, conversion = {}):
             #get everything where this specific row/region is an origin
             prefix = prefd[sd]
             #fill with 0
-            inv_ovc = {k:sd.get(iid,0) for k,sd in ovc.items()}
+            inv_ovc = {k:subd.get(iid,0) for k,subd in ovc.items()}
+            #print(inv_ovc)
             for destination, count in inv_ovc.items():
                 #scale the count for display
                 if destination == "indeterminate":
@@ -113,6 +116,7 @@ def update_js(target, conversion = {}):
             assert "intros" in propd["properties"]
             print(str(propd) + ",",file=outf)
         print("]};",file=outf)
+
 stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
     "CT":"Connecticut","DE":"Delaware","DC":"District of Columbia","FL":"Florida","GA":"Georgia","HI":"Hawaii",
     "ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine",
@@ -121,5 +125,6 @@ stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"C
     "ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island",
     "SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia",
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
+
 if __name__ == "__main__":
     update_js("us-states.geo.json",stateconv)
