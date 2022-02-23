@@ -97,18 +97,6 @@ function setTimeLabels(sel) {
     }
 }
 
-function setColorLabels(sel) {
-    if (sel == 0) {
-        //raw cluster counts
-        document.getElementById("btn_color_0").classList.add("btn_selected");
-        document.getElementById("btn_color_1").classList.remove("btn_selected");
-    } else if (sel == 1) {
-        //log fold enrichment
-        document.getElementById("btn_color_0").classList.remove("btn_selected");
-        document.getElementById("btn_color_1").classList.add("btn_selected");
-    }
-}
-
 function style(feature) {
     return {
         fillColor: getColorBase(feature.properties.intros[global_time + "basecount"]),
@@ -241,7 +229,10 @@ function resetView(e) {
     });
     global_state = "default";
     global_state_id = "00";
-    document.getElementById("colorbtn").disabled = true;
+    var btn = document.getElementById("colorbtn");
+    btn.disabled = true;
+    btn.innerText = "Show Raw Cluster Count";
+    color_scale = "log";
     legend.update(global_state);
     loadTargetTable('data/display_tables/default_clusters.tsv');
 }
@@ -314,16 +305,15 @@ function colorIntros() {
     legend.update(global_state);
 }
 function changeScale() {
-    if (global_state != "default"){
-        if (color_scale == "log") {
-            color_scale = "raw";
-            setColorLabels(0);
-            colorIntros();
-        } else {
-            color_scale = "log";
-            setColorLabels(1);
-            colorIntros();
-        }
+    var btn = document.getElementById("colorbtn");
+    if (color_scale == "log") {
+        color_scale = "raw";
+        btn.innerText = "Show Log Fold Enrichment";
+        colorIntros();
+    } else {
+        color_scale = "log";
+        btn.innerText = "Show Raw Cluster Count";
+        colorIntros();
     }
 }
 
