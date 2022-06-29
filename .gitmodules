@@ -1,0 +1,3 @@
+[submodule "taxonium"]
+	path = taxonium
+	url = https://github.com/theosanderson/taxonium
