@@ -44,8 +44,8 @@ def primary_pipeline(args):
     # subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
     print("Updating map display data.")
     update_js(args.geojson, conversion)
-    print("Generating top cluster tables.")
-    generate_display_tables(conversion, host = args.host)
+    print("Generating top cluster tables.")        
+    generate_display_tables(conversion, host = args.host, extension = ".jsonl.gz" if args.taxversion else ".pb.gz")
     print("Preparing taxodium view.")
     sd = {}
     with open("hardcoded_clusters.tsv") as inf:
