@@ -41,7 +41,7 @@ def primary_pipeline(args):
         conversion = {}
     # print(conversion)
     print("Calling introduce.")
-    # subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
+    subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
     print("Updating map display data.")
     update_js(args.geojson, conversion)
     print("Generating top cluster tables.")        
