@@ -27,8 +27,8 @@ def parse_setup():
     parser.add_argument("-t","--threads",type=int,help="Number of threads to use.", default = 4)
     parser.add_argument("-l","--lexicon",help="Optionally, link to a text file containing all names for the same region, one region per row, tab separated.", default = "")
     parser.add_argument("-X","--lookahead",type=int,help="Number to pass to parameter -X of introduce. Increase to merge nested clusters. Default 2", default = 2)
-    parser.add_argument("-H","--host",help="Web-accessible link to the current directory for taxodium cluster view.",default="https://raw.githubusercontent.com/jmcbroome/introduction-website/main/")
     parser.add_argument("-V","--taxversion",action='store_true',help="Export the view in Taxonium 2.0 jsonl format instead of taxonium protobuf. Requires the installation of taxoniumtools and adds some compute time.")
+    parser.add_argument("-H","--host",help="Web-accessible link to the current directory for taxodium cluster view.",default="https://clustertracker.gi.ucsc.edu/")
     args = parser.parse_args()
     return args
 
