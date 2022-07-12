@@ -1,4 +1,4 @@
-def generate_display_tables(conversion = {}, host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/", extension = ".pb.gz"):
+def generate_display_tables(conversion = {}, host = "https://clustertracker.gi.ucsc.edu/", extension = ".jsonl.gz"):
     filelines = {}
     def fix_month(datestr):
         monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
@@ -91,16 +91,16 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 #additionally process the date strings
                 outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
                 print("\t".join(outline),file=outf)
-
     mout.close()
     sorted_defaults = sorted(list(zip(default_growthvs,default_lines)),key=lambda x:-x[0])
     with open("display_tables/default_clusters.tsv","w+") as outf:
         print(header,file=outf)
         for gv,dl in sorted_defaults:
+            spent = dl.split("\t")
             if extension=="pb.gz":
-                link = generate_v1_link(dl.split("\t")[0])
+                link = generate_v1_link(spent[0])
             else:
-                link = generate_v2_link(dl.split("\t")[0])
+                link = generate_v2_link(spent[0])
             outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
 stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
@@ -113,4 +113,4 @@ stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"C
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
 stateconv.update({v:v for v in stateconv.values()})
 if __name__ == "__main__":
-    generate_display_tables(stateconv, host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/")
+    generate_display_tables(stateconv, host = "https://clustertracker.gi.ucsc.edu/", extension=".jsonl.gz")
