@@ -204,10 +204,10 @@ function loadTargetTable(target) {
                 return '<div title="Importance estimate based on cluster size and age. Not directly comparable between regions with varying sequencing levels.">' + data + "</div>"
               }
             ],[8, function (data,type,row,meta) {
-                return '<div title="Confidence metric for the origin; 1 is maximal, 0 is minimal.">' + data + "</div>"
+                return '<div title="Regional index for the origin; 1 is maximal, 0 is minimal.">' + data + "</div>"
               }
             ],[7, function (data,type,row,meta) {
-                return '<div title="The origin region with the greatest weight. May not be the true origin, especially if the corresponding confidence value is below 0.5.">' + data + "</div>"
+                return '<div title="The origin region with the greatest index value. May not be the true origin, especially if the corresponding index value is below 0.5.">' + data + "</div>"
               }
             ],[6, function (data,type,row,meta) {
                 return '<div title="Pangolin lineage of the ancestral introduction.">' + data + "</div>"
