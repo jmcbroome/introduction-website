@@ -1,4 +1,4 @@
-def generate_display_tables(conversion = {}, host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/"):
+def generate_display_tables(conversion = {}, host = "https://clustertracker.gi.ucsc.edu/", extension = ".jsonl.gz"):
     filelines = {}
     def fix_month(datestr):
         monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
@@ -54,6 +54,21 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
     header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
+    def generate_v1_link(cn):
+        link = "https://taxonium.org/?protoUrl=" + host + "data/cview" + extension
+        link += '&search=[{"id":0.123,"category":"cluster","value":"'
+        link += cn
+        link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
+        link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
+        link += "&zoomToSearch=0&blinking=false"
+        return link
+    def generate_v2_link(cn):
+        link = "https://taxonium.org/?protoUrl=" + host + "data/cview" + extension
+        link += '&srch=[{"key":"aa1","type":"meta_cluster","method":"text_match","text":"'
+        link += cn
+        link += '","gene":"S","position":484,"new_residue":"any","min_tips":0,"controls":true}]'
+        link += "&zoomToSearch=0"
+        return link
     for reg, lines in filelines.items():
         with open("display_tables/" + conversion[reg] + "_topclusters.tsv", "w+") as outf:
             print(header,file=outf)
@@ -69,28 +84,23 @@ def generate_display_tables(conversion = {}, host = "https://raw.githubuserconte
                 #generate a link to exist in the last column
                 #based on the global "host" variable.
                 #and including all html syntax.
-                link = "https://taxonium.org/?protoUrl=" + host + "data/cview.pb.gz"
-                link += '&search=[{"id":0.123,"category":"cluster","value":"'
-                link += spent[0]
-                link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
-                link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
-                link += "&zoomToSearch=0&blinking=false"
+                if extension=="pb.gz":
+                    link = generate_v1_link(spent[0])
+                else:
+                    link = generate_v2_link(spent[0])
                 #additionally process the date strings
                 outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
                 print("\t".join(outline),file=outf)
-
     mout.close()
     sorted_defaults = sorted(list(zip(default_growthvs,default_lines)),key=lambda x:-x[0])
     with open("display_tables/default_clusters.tsv","w+") as outf:
         print(header,file=outf)
         for gv,dl in sorted_defaults:
             spent = dl.split("\t")
-            link = "https://taxonium.org/?protoUrl=" + host + "data/cview.pb.gz"
-            link += '&search=[{"id":0.123,"category":"cluster","value":"'
-            link += spent[0]
-            link += '","enabled":true,"aa_final":"any","min_tips":1,"aa_gene":"S","search_for_ids":""}]'
-            link += '&colourBy={"variable":"region","gene":"S","colourLines":false,"residue":"681"}'
-            link += "&zoomToSearch=0&blinking=false"
+            if extension=="pb.gz":
+                link = generate_v1_link(spent[0])
+            else:
+                link = generate_v2_link(spent[0])
             outline = [spent[0], spent[9], spent[1], fix_month(spent[2]), fix_month(spent[3]), spent[12], spent[13], spent[10], spent[11], spent[4], link]
             print("\t".join(outline), file = outf)
 stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"California","CO":"Colorado",
@@ -103,4 +113,4 @@ stateconv = {"AL":"Alabama","AK":"Alaska","AR":"Arkansas","AZ":"Arizona","CA":"C
     "WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming","PR":"Puerto Rico"}
 stateconv.update({v:v for v in stateconv.values()})
 if __name__ == "__main__":
-    generate_display_tables(stateconv, host = "https://raw.githubusercontent.com/jmcbroome/introduction-website/main/")
+    generate_display_tables(stateconv, host = "https://clustertracker.gi.ucsc.edu/", extension=".jsonl.gz")
