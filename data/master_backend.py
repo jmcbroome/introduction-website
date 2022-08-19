@@ -92,7 +92,7 @@ def primary_pipeline(args):
         subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv -F cluster,region --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
     else:
         print("Generating viewable jsonl.")
-        subprocess.check_call("usher_to_taxonium -i " + args.input + " -m clusterswapped.tsv -c cluster,region -o cview.jsonl.gz --title Cluster-Tracker",shell=True)
+        subprocess.check_call("usher_to_taxonium -i " + args.input + " -g hu1.gb -m clusterswapped.tsv -c cluster,region -o cview.jsonl.gz --title Cluster-Tracker",shell=True)
     print("Process completed; check website for results.")
 
 if __name__ == "__main__":
