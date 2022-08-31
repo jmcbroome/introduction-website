@@ -27,7 +27,9 @@ def parse_setup():
     parser.add_argument("-t","--threads",type=int,help="Number of threads to use.", default = 4)
     parser.add_argument("-l","--lexicon",help="Optionally, link to a text file containing all names for the same region, one region per row, tab separated.", default = "")
     parser.add_argument("-X","--lookahead",type=int,help="Number to pass to parameter -X of introduce. Increase to merge nested clusters. Default 2", default = 2)
-    parser.add_argument("-H","--host",help="Web-accessible link to the current directory for taxodium cluster view.",default="https://raw.githubusercontent.com/jmcbroome/introduction-website/main/")
+    parser.add_argument("-V","--taxversion",action='store_true',help="Export the view in Taxonium 2.0 jsonl format instead of taxonium protobuf. Requires the installation of taxoniumtools and adds some compute time.")
+    parser.add_argument("-H","--host",help="Web-accessible link to the current directory for taxodium cluster view.",default="https://clustertracker.gi.ucsc.edu/")
+    parser.add_argument("-S","--skip",action='store_true',help="Use to skip inference of introductions and go straight to preparing the data for display. hardcoded_clusters.tsv must already exist.")
     args = parser.parse_args()
     return args
 
@@ -39,20 +41,17 @@ def primary_pipeline(args):
     else:
         conversion = {}
     # print(conversion)
-    print("Calling introduce.")
-    subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
+    if not args.skip:
+        print("Calling introduce.")
+        subprocess.check_call("matUtils introduce -i " + args.input + " -s " + args.sample_regions + " -u hardcoded_clusters.tsv -T " + str(args.threads) + " -X " + str(args.lookahead), shell=True)
+    else:
+        print("Skipping introduction inference.")
     print("Updating map display data.")
     update_js(args.geojson, conversion)
-    print("Generating top cluster tables.")
-    generate_display_tables(conversion, host = args.host)
+    print("Generating top cluster tables.")        
+    generate_display_tables(conversion, host = args.host, extension = ".jsonl.gz" if args.taxversion else ".pb.gz")
     print("Preparing taxodium view.")
     sd = {}
-    # with open("cluster_labels.tsv") as inf:
-    #     for entry in inf:
-    #         spent = entry.strip().split()
-    #         if spent[0] == "sample":
-    #             continue
-    #         sd[spent[0]] = spent[1]
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split('\t')
@@ -88,8 +87,12 @@ def primary_pipeline(args):
                     spent.append("None")
                 i += 1
                 print("\t".join(spent),file=outf)
-    print("Generating viewable pb.")
-    subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv -F cluster,region --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
+    if not args.taxversion:
+        print("Generating viewable pb.")
+        subprocess.check_call("matUtils extract -i " + args.input + " -M clusterswapped.tsv -F cluster,region --write-taxodium cview.pb --title Cluster-Tracker -g " + args.annotation + " -f " + args.reference,shell=True)
+    else:
+        print("Generating viewable jsonl.")
+        subprocess.check_call("usher_to_taxonium -i " + args.input + " -m clusterswapped.tsv -c cluster,region -o cview.jsonl.gz --title Cluster-Tracker",shell=True)
     print("Process completed; check website for results.")
 
 if __name__ == "__main__":
