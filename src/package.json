@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "bootstrap": "^5.1.0",
-    "datatables.net": "^1.10.25",
-    "datatables.net-dt": "^1.1.0",
     "jquery": "^3.6.0",
-    "jquery-csv": "^1.0.21"
+    "leaflet": "^1.8.0",
+    "pako": "^2.0.4",
+    "slickgrid": "^2.4.44"
   }
 }

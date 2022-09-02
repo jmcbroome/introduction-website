@@ -9,9 +9,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>       
-<link rel="stylesheet" href="lib/leafletjs/leaflet.css">
-<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="lib/slickgrid/slick.grid.css" type="text/css"/>
+<link rel="stylesheet" href="lib/jquery-ui/jquery-ui.min.css" type="text/css"/>
+<link rel="stylesheet" href="lib/slickgrid/controls/slick.pager.css" type="text/css"/>
+<link rel="stylesheet" href="lib/leafletjs/leaflet.css" type="text/css"/>
+<link rel="stylesheet" href="css/gridstyles.css" type="text/css"/>
+<link rel="stylesheet" href="css/custom.css" type="text/css"/>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
@@ -24,12 +27,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <body>
         <h1> Cluster-Tracker </h1>
         <script>
-            function showList(op) {
-                if (op == "time") {
-                    document.getElementById("myDropdown").classList.toggle("show");
-                } else if (op == "color") {
-                    document.getElementById("myDropColor").classList.toggle("show");
-                }
+            host = "data/"
+            //host = 'https://storage.googleapis.com/ucsc-gi-cdph-bigtree/display_tables/';
+            //host = "https://clustertracker.gi.ucsc.edu/";
+            cDataFile = 'cluster_data.json.gz';
+            cSampleFile = 'sample_data.json.gz';
+
+            function showList() {
+                document.getElementById("myDropdown").classList.toggle("show");
             }
             window.onclick = function(event) {
                 if (!event.target.matches('.dropbtn')) {
@@ -45,7 +50,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             }
         </script>
         <div class="dropdown" id="droploc">
-            <button onclick="showList('time')" class="dropbtn">Choose Map Display Time Period</button>
+            <button onclick="showList()" class="dropbtn">Choose Map Display Time Period</button>
             <div id="myDropdown" class="dropdown-content">
                 <button id="btn_time_0" class="timel btn_selected" onclick="changeMap(0)">Whole Pandemic</p>
                 <button id="btn_time_12" class="timel" onclick="changeMap(12)">Last 12 Months</p>
@@ -54,11 +59,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             </div>
         </div>
         <div class="dropdown" id="dropcolor">
-            <button onclick="showList('color')" class="dropbtn" id="colorbtn" disabled>Select Map Layer</button>
-            <div id="myDropColor" class="dropdown-content">
-                <button id="btn_color_0" class="timel" onclick="changeScale(0)">Raw Cluster Count</p>
-                <button id="btn_color_1" class="timel btn_selected" onclick="changeScale(1)">Log Fold Enrichment</p>
-            </div>
+            <button onclick="changeScale()" class="dropbtn" id="colorbtn" disabled>Show Raw Cluster Count</button>
         </div>
         <div id="display" title="This map displays the count of inferred unique families of the virus in each state by default. When a state is selected, it instead displays a scaled estimate of the count of viral introductions to the selected state from each other state.">
             <div id="mapid"></div>
@@ -76,19 +77,41 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                 You can view each cluster in <a title="Github repository for the Taxonium browser tree viewer" href="https://github.com/theosanderson/taxonium" target="_blank">Theo Sanderson's taxonium</a> and perform your own analysis with <a title="Github repository for our underlying tools" href="https://github.com/yatisht/usher" target="_blank">our toolkit and database.</a>
             </p>
         </div>
-        <div id="table-container"></div>
+        <div id="searchbox">
+            Search: 
+            <input type=text id="txtSearch" style="width:150px;">
+        </div>
+        <div id="myGrid" style="width:100%;height:600px;"></div>
+        <div id="pager" style="width:100%;height:20px;"></div>
+
+
         <script src="lib/leafletjs/leaflet.js"></script>
         <script src="data/regions.js"></script>
         <script src="src/main.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>!window.jQuery && document.write('<script src="lib/jquery/jquery.min.js"><\/script>')</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
-        <script src="src/jquery.csv.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-        <script src="src/csv_to_html_table.js"></script> 
+        <!-- SlickGrid: core jquery libs -->
+        <script src="lib/jquery-ui/jquery-ui.min.js"></script>
+        <script src="lib/slickgrid/lib/jquery.event.drag-2.3.0.js"></script>
+        <!-- SlickGrid: core js-->
+        <script src="lib/slickgrid/slick.core.js"></script>
+        <script src="lib/slickgrid/slick.grid.js"></script>
+        <script src="lib/slickgrid/slick.dataview.js"></script>
+        <script src="lib/slickgrid/controls/slick.pager.js"></script>
+        <!-- SlickGrid: copy cells -->
+        <script src="lib/slickgrid/plugins/slick.cellexternalcopymanager.js"></script>
+        <script src="lib/slickgrid/plugins/slick.cellselectionmodel.js"></script>
+        <script src="lib/slickgrid/plugins/slick.cellrangedecorator.js"></script>
+        <script src="lib/slickgrid/plugins/slick.cellrangeselector.js"></script>
+        <!-- Slick Grid: tool tip -->
+        <script src="lib/slickgrid/plugins/slick.customtooltip.js"></script>
+        <!-- Gets data and loads into Slick Grid table -->
+        <script src="src/datagrid.js"></script>
         <script>
-           loadTargetTable('data/display_tables/default_clusters.tsv');
+            initCTGrid(host, cDataFile, cSampleFile);
         </script>
+
         <a href = "data/hardcoded_clusters.tsv", download = "sarscov2_clusters.tsv">Download full output file.</a>
         <a href = "data/cview.pb.gz", download = "cluster_taxodium.pb">Download the taxonium protobuf for viewing.</a>
         <p>Please post an issue at <a title="The github repository for this site." href="https://github.com/jmcbroome/introduction-website" target="_blank">the github</a> or email me at jmcbroom@ucsc.edu if you have questions or feedback.</p>
