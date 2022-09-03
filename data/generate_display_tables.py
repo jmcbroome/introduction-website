@@ -1,6 +1,7 @@
 import json, gzip
 
 def generate_display_tables():
+    #function to convert date format from YYYY-Mon-DD to YYYY-MM-DD
     def fix_month(datestr):
         monthswap = {"Jan":"01","Feb":"02","Mar":"03","Apr":"04","May":"05","Jun":"06","Jul":"07","Aug":"08","Sep":"09","Oct":"10","Nov":"11","Dec":"12"}
         splitr = datestr.split("-")
@@ -11,18 +12,25 @@ def generate_display_tables():
 
     # get clusters data and put into array
     cluster_data = []
+    bad_date_data = []
     with open("hardcoded_clusters.tsv") as inf:
         for entry in inf:
             spent = entry.strip().split("\t")
             if spent[0] == "cluster_id": 
                 continue
-            #fix date format
-            spent[2] = fix_month(spent[2])
-            spent[3] = fix_month(spent[3])
-            cluster_data.append(spent)
+            if spent[2] == "no-valid-date" and spent[3] == "no-valid-date":
+                bad_date_data.append(spent)
+            else:
+                #fix date format
+                spent[2] = fix_month(spent[2])
+                spent[3] = fix_month(spent[3])
+                cluster_data.append(spent)
     
     #now, sort by growth score
     cluster_data.sort(key = lambda x: x[4], reverse = True)
+    # sort clusters with no-valid-date by growth score and append to cluster_data at the end
+    bad_date_data.sort(key = lambda x: x[4], reverse = True)
+    cluster_data.extend(bad_date_data)
 
     #output data to be compatible with parse.JSON
     # -create as compact a string as possible,
