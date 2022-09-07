@@ -14,7 +14,7 @@ const workerScript = `
       self.postMessage(decompressed, [decompressed.buffer]);
     };
   `;
-let sortcol = ''; // column to sort on''
+let sortcol = ''; // column to sort on
 let sortdir = 1; // default sort direction (ascending)
 let searchString = ''; // string used to search and sort grid
 let regionString = ''; // string to filter grid by region
@@ -134,15 +134,19 @@ function loadData(dataArr, type, host = '') {
       initData(dataArr, type, host);
     } else if (!basicDataLoaded) {
       // call update function
-      //
+      appendData(dataArr, type, host);
+      updateData();
     }
+    basicDataLoaded = true;
   } else if (type === 'samples') {
-    if (!sampleDataLoaded) {
-      initData(dataArr, type);
-    } else if (!basicDataLoaded) {
+    if (basicDataLoaded) {
       // call update function
-      //
+      appendData(dataArr, type);
+      updateData();
+    } else {
+      initData(dataArr, type);
     }
+    sampleDataLoaded = true;
   }
   setGridView();
 } // end of loadData function
@@ -157,15 +161,7 @@ async function loadBasicData(host, file) {
 
   worker.onmessage = ({data}) => {
     const clusters = JSON.parse(new TextDecoder().decode(data));
-
-    if (!sampleDataLoaded) {
-      loadData(clusters, 'clusters', host);
-    } else {
-      appendData(clusters, 'clusters', host);
-      updateData();
-    }
-
-    basicDataLoaded = true;
+    loadData(clusters, 'clusters', host);
   };
   worker.postMessage(compressedBlob1);
 }
@@ -180,13 +176,7 @@ async function loadSampleData(host, file) {
 
   worker.onmessage = ({data}) => {
     const samples = JSON.parse(new TextDecoder().decode(data));
-    if (basicDataLoaded) {
-      appendData(samples, 'samples');
-      updateData();
-    } else {
-      loadData(samples, 'samples');
-    }
-    sampleDataLoaded = true;
+    loadData(samples, 'samples');
   };
   worker.postMessage(compressedBlob2);
 }
@@ -456,8 +446,8 @@ function initCTGrid(host, clusterfile, samplefile) {
   basicDataLoaded = false;
   sampleDataLoaded = false;
   data = [];
-  sortcol = 'growth';
-  sortdir = -1;
+  // sortcol = 'growth';
+  sortdir = 1;
   searchString = '';
   regionString = '';
   document.getElementById('txtSearch').value = '';
