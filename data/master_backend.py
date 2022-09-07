@@ -49,7 +49,7 @@ def primary_pipeline(args):
     print("Updating map display data.")
     update_js(args.geojson, conversion)
     print("Generating top cluster tables.")        
-    generate_display_tables(conversion, host = args.host, extension = ".jsonl.gz" if args.taxversion else ".pb.gz")
+    generate_display_tables()
     print("Preparing taxodium view.")
     sd = {}
     with open("hardcoded_clusters.tsv") as inf:

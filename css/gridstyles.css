@@ -1,0 +1,100 @@
+@import url('../lib/slickgrid/slick-default-theme.css');
+
+#myGrid, #pager, #searchbox, div.ui-dialog {
+  font-family: arial;
+  font-size: 8pt;
+}
+div.ui-dialog {line-height: normal;}
+
+#myGrid {
+  background: white;
+  outline: 0;
+  border: 1px solid gray;
+}
+
+#searchbox {
+  float: right;
+  text-align: right;
+}
+#txtSearch {border: 1px solid gray;}
+
+#pager {margin-bottom: 6px;}
+
+
+/* header height */
+.slick-column-name { white-space: normal; }
+.slick-header-column.ui-state-default { height: 45px; }
+
+/* cell copy color */
+.slick-cell.copied {
+  background: blue;
+  background: rgba(0, 0, 255, 0.2);
+  -webkit-transition: 0.5s background;
+}
+
+/* sample IDs popup */
+#sample-popup.ui-dialog-content {
+ width: 300px;
+ overflow: auto;
+}
+
+
+
+.options-panel li {
+  /background: url("../lib/slickgrid/images/arrow_right_spearmint.png") no-repeat center left;
+  padding: 0 0 0 14px;
+
+  list-style: none;
+  margin: 0;
+}
+
+
+.grid-header {
+  border: 1px solid gray;
+  border-bottom: 0;
+  border-top: 0;
+  background: url('../lib/slickgrid/images/header-bg.gif') repeat-x center top;
+  color: black;
+  height: 24px;
+  line-height: 24px;
+}
+
+.grid-header label {
+  display: inline-block;
+  font-weight: bold;
+  margin: auto auto auto 6px;
+}
+
+.grid-header .ui-icon {
+  margin: 4px 4px auto 6px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.grid-header .ui-icon.ui-state-hover {
+  background-color: white;
+}
+
+.grid-header #txtSearch {
+  margin: 0 4px 0 4px;
+  padding: 2px 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border: 1px solid silver;
+}
+
+.options-panel {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border: 1px solid silver;
+  background: #f0f0f0;
+  padding: 4px;
+  margin-bottom: 20px;
+  width: 320px;
+  position: absolute;
+  top: 0px;
+  left: 650px;
+}
+
+
+
