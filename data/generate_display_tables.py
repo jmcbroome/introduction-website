@@ -51,7 +51,7 @@ def generate_display_tables(conversion = {}, host = "https://clustertracker.gi.u
             for t in totbuff[:100-len(default_lines)]:
                 default_lines.append(t[0])
                 default_growthvs.append(0-1/t[1])
-    header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tInferred Origins\tInferred Origin Confidences\tGrowth Score\tClick to View"
+    header = "Cluster ID\tRegion\tSample Count\tEarliest Date\tLatest Date\tClade\tLineage\tBest Potential Origins\tBest Origin Regional Indeces\tGrowth Score\tClick to View"
     mout = open("cluster_labels.tsv","w+")
     print("sample\tcluster",file=mout)
     def generate_v1_link(cn):
